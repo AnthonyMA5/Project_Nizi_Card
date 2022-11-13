@@ -124,7 +124,7 @@
                         android:layout_marginTop="15dp"
                         android:layout_weight="1"
                         android:fontFamily="@font/gilroy_semibold"
-                        android:text="Nova Card"
+                        android:text="Nizi Card"
                         android:textColor="#FFFFFF"
                         android:textSize="20sp" />
 
@@ -388,8 +388,10 @@
 
 
             <ListView
+                android:id="@+id/lvMovimientosRecientes"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content" />
+
         </androidx.cardview.widget.CardView>
 
 
