@@ -4,16 +4,128 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:gravity="center"
+    android:layout_gravity="center"
     tools:context=".Profile">
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:gravity="center">
+        android:gravity="center"
+        tools:ignore="SpeakableTextPresentCheck">
 
-        <LinearLayout
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:orientation="vertical" />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical">
+
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="360dp"
+                    android:src="@drawable/profile_background"/>
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+
+                    <ImageView
+                        android:id="@+id/regresar"
+                        android:layout_width="50dp"
+                        android:layout_marginTop="14dp"
+                        android:layout_height="50dp"
+                        android:layout_marginStart="20dp"
+                        android:src="@drawable/atras">
+
+                    </ImageView>
+
+                    <TextView
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_toEndOf="@+id/regresar"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:text="Mi Perfil"
+                        android:textColor="@color/white"
+                        android:textSize="30dp" />
+
+                    <androidx.cardview.widget.CardView
+                        app:cardCornerRadius="15dp"
+                        android:layout_marginTop="130dp"
+                        app:cardElevation="10dp"
+                        app:cardUseCompatPadding="true"
+                        android:layout_width="match_parent"
+                        android:layout_height="540dp">
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:orientation="vertical">
+
+                            <TextView
+                                android:layout_marginTop="75dp"
+                                android:id="@+id/nombre_1_completo_perfil"
+                                android:layout_width="match_parent"
+                                android:textAlignment="center"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Anthony Martinez Arellano"
+                                android:textColor="@color/black"
+                                android:textSize="20dp" />
+
+                            <TextView
+                                android:id="@+id/correo1_perfil"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_medium"
+                                android:layout_marginTop="5dp"
+                                android:textAlignment="center"
+                                android:text="anthony_ar2003@outlook.com"
+                                android:textColor="@color/black"
+                                android:layout_below="@+id/nombre_1_completo_perfil"
+                                android:textSize="15dp" />
+                            
+                            <View
+                                android:id="@+id/divisor"
+                                android:layout_width="match_parent"
+                                android:layout_height="1dp"
+                                android:layout_marginTop="25dp"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:background="#b9b9bb"/>
+
+                            <TextView
+                                android:id="@+id/title_nombre"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:text="Nombre"
+                                android:textColor="@color/black"
+                                android:layout_below="@+id/divisor"
+                                android:textSize="17dp"/>
+
+                        </LinearLayout>
+
+                    </androidx.cardview.widget.CardView>
+
+                </RelativeLayout>
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:layout_width="130dp"
+                    android:layout_height="130dp"
+                    android:layout_marginTop="90dp"
+                    app:shapeAppearanceOverlay="@style/circular"
+                    android:src="@drawable/photo_example"
+                    app:civ_border_color="#D8D8D8"
+                    android:elevation="15dp"
+                    android:padding="5dp"
+                    android:layout_centerHorizontal="true"
+                    app:civ_border_width="3dp" />
+
+            </RelativeLayout>
+
     </ScrollView>
+
 </androidx.constraintlayout.widget.ConstraintLayout>
