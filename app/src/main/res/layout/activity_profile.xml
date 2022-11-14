@@ -42,12 +42,12 @@
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginStart="8dp"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="22dp"
                         android:layout_toEndOf="@+id/regresar"
                         android:fontFamily="@font/gilroy_semibold"
                         android:text="Mi Perfil"
                         android:textColor="@color/white"
-                        android:textSize="30dp" />
+                        android:textSize="26dp" />
 
                     <androidx.cardview.widget.CardView
                         app:cardCornerRadius="15dp"
@@ -55,7 +55,7 @@
                         app:cardElevation="10dp"
                         app:cardUseCompatPadding="true"
                         android:layout_width="match_parent"
-                        android:layout_height="540dp">
+                        android:layout_height="wrap_content">
 
                         <LinearLayout
                             android:layout_width="match_parent"
@@ -98,13 +98,143 @@
                                 android:id="@+id/title_nombre"
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:fontFamily="@font/gilroy_semibold"
+                                android:layout_below="@+id/divisor"
                                 android:layout_marginStart="20dp"
                                 android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
                                 android:text="Nombre"
                                 android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/name_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
+                            <TextView
+                                android:id="@+id/title_lastname"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
                                 android:layout_below="@+id/divisor"
-                                android:textSize="17dp"/>
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Apellidos"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/lastname_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
+                            <TextView
+                                android:id="@+id/title_number"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divisor"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Número telefónico"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/number_profile"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
+                            <TextView
+                                android:id="@+id/title_email"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divisor"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Correo electrónico"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/email_profile"
+                                android:inputType="textEmailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
+                            <TextView
+                                android:id="@+id/title_username"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divisor"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Nombre de usuario"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/username_profile"
+                                android:inputType="textEmailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
+                            <TextView
+                                android:id="@+id/title_password"
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_below="@+id/divisor"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginTop="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Contraseña"
+                                android:textColor="@color/black"
+                                android:textSize="17dp" />
+
+                            <EditText
+                                android:id="@+id/password_profile"
+                                android:inputType="textEmailAddress"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_marginStart="20dp"
+                                android:layout_marginEnd="20dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:textSize="17dp"
+                                android:textColor="#353535">
+                            </EditText>
+
 
                         </LinearLayout>
 
