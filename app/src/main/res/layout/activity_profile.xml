@@ -4,8 +4,8 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:gravity="center"
     android:layout_gravity="center"
+    android:gravity="center"
     tools:context=".Profile">
 
     <ScrollView
@@ -14,137 +14,235 @@
         android:gravity="center"
         tools:ignore="SpeakableTextPresentCheck">
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="220dp"
+                android:src="@drawable/profile_background" />
+
             <RelativeLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                android:orientation="vertical">
+                android:layout_height="wrap_content">
 
                 <ImageView
+                    android:id="@+id/regresar"
+                    android:layout_width="50dp"
+                    android:layout_height="50dp"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="14dp"
+                    android:src="@drawable/atras">
+
+                </ImageView>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="8dp"
+                    android:layout_marginTop="24dp"
+                    android:layout_toEndOf="@+id/regresar"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Mi perfil"
+                    android:textColor="@color/white"
+                    android:textSize="22dp" />
+
+                <androidx.cardview.widget.CardView
                     android:layout_width="match_parent"
-                    android:layout_height="360dp"
-                    android:src="@drawable/profile_background"/>
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="130dp"
+                    app:cardCornerRadius="15dp"
+                    app:cardElevation="10dp"
+                    app:cardUseCompatPadding="true">
 
-                <RelativeLayout
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content">
-
-                    <ImageView
-                        android:id="@+id/regresar"
-                        android:layout_width="50dp"
-                        android:layout_marginTop="14dp"
-                        android:layout_height="50dp"
-                        android:layout_marginStart="20dp"
-                        android:src="@drawable/atras">
-
-                    </ImageView>
-
-                    <TextView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="8dp"
-                        android:layout_marginTop="22dp"
-                        android:layout_toEndOf="@+id/regresar"
-                        android:fontFamily="@font/gilroy_semibold"
-                        android:text="Mi Perfil"
-                        android:textColor="@color/white"
-                        android:textSize="26dp" />
-
-                    <androidx.cardview.widget.CardView
-                        app:cardCornerRadius="15dp"
-                        android:layout_marginTop="130dp"
-                        app:cardElevation="10dp"
-                        app:cardUseCompatPadding="true"
+                    <LinearLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content">
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
 
-                        <LinearLayout
+                        <TextView
+                            android:id="@+id/nombre_1_completo_perfil"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
-                            android:orientation="vertical">
+                            android:layout_marginTop="75dp"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Anthony Martinez Arellano"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="20dp" />
+
+                        <TextView
+                            android:id="@+id/correo1_perfil"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_below="@+id/nombre_1_completo_perfil"
+                            android:layout_marginTop="5dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="anthony_ar2003@outlook.com"
+                            android:textAlignment="center"
+                            android:textColor="@color/black"
+                            android:textSize="15dp" />
+
+                        <View
+                            android:id="@+id/divisor"
+                            android:layout_width="match_parent"
+                            android:layout_height="1dp"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:background="#b9b9bb" />
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="25dp"
+                            android:layout_marginEnd="20dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/usuario" />
 
                             <TextView
-                                android:layout_marginTop="75dp"
-                                android:id="@+id/nombre_1_completo_perfil"
-                                android:layout_width="match_parent"
-                                android:textAlignment="center"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/gilroy_semibold"
-                                android:text="Anthony Martinez Arellano"
-                                android:textColor="@color/black"
-                                android:textSize="20dp" />
-
-                            <TextView
-                                android:id="@+id/correo1_perfil"
-                                android:layout_width="match_parent"
-                                android:layout_height="wrap_content"
-                                android:fontFamily="@font/gilroy_medium"
-                                android:layout_marginTop="5dp"
-                                android:textAlignment="center"
-                                android:text="anthony_ar2003@outlook.com"
-                                android:textColor="@color/black"
-                                android:layout_below="@+id/nombre_1_completo_perfil"
-                                android:textSize="15dp" />
-                            
-                            <View
-                                android:id="@+id/divisor"
-                                android:layout_width="match_parent"
-                                android:layout_height="1dp"
-                                android:layout_marginTop="25dp"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginEnd="20dp"
-                                android:background="#b9b9bb"/>
-
-                            <LinearLayout
                                 android:layout_width="wrap_content"
                                 android:layout_height="wrap_content"
-                                android:orientation="horizontal"
-                                android:layout_marginTop="25dp"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginEnd="20dp">
+                                android:layout_gravity="center"
+                                android:layout_marginStart="15dp"
+                                android:textColor="#5B5B5B"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Información personal"
+                                android:textSize="18dp" />
 
-                                <ImageView
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:src="@drawable/icono_persona"/>
+                            <ImageView
+                                android:id="@+id/ingPI"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="75dp"
+                                android:src="@drawable/ingreso" />
 
-                                <TextView
-                                    android:layout_width="wrap_content"
-                                    android:layout_height="wrap_content"
-                                    android:text="Información Personal"
-                                    android:layout_gravity="center"
-                                    android:layout_marginStart="15dp"
-                                    android:fontFamily="@font/gilroy_semibold"
-                                    android:textSize="18dp"/>
-
-                                <ImageView
-                                    android:id="@+id/ingPI"
-                                    android:layout_width="30dp"
-                                    android:layout_height="30dp"
-                                    android:layout_marginStart="75dp"
-                                    android:src="@drawable/abrir"/>
-
-
-                            </LinearLayout>
 
                         </LinearLayout>
 
-                    </androidx.cardview.widget.CardView>
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginEnd="20dp"
+                            android:orientation="horizontal">
 
-                </RelativeLayout>
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/casa" />
 
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:layout_width="130dp"
-                    android:layout_height="130dp"
-                    android:layout_marginTop="90dp"
-                    app:shapeAppearanceOverlay="@style/circular"
-                    android:src="@drawable/photo_example"
-                    app:civ_border_color="#D8D8D8"
-                    android:elevation="15dp"
-                    android:padding="5dp"
-                    android:layout_centerHorizontal="true"
-                    app:civ_border_width="3dp" />
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Dirección domiciliar"
+                                android:textColor="#5B5B5B"
+                                android:textSize="18dp" />
+
+                            <ImageView
+                                android:id="@+id/ingAdd"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="85dp"
+                                android:src="@drawable/ingreso" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginEnd="20dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/casa" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Cambiar contraseña"
+                                android:textColor="#5B5B5B"
+                                android:textSize="18dp" />
+
+                            <ImageView
+                                android:id="@+id/ingChPass"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="75dp"
+                                android:src="@drawable/ingreso" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="35dp"
+                            android:layout_marginEnd="20dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/casa" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Huella digital"
+                                android:textColor="#5B5B5B"
+                                android:textSize="18dp" />
+
+                            <ImageView
+                                android:id="@+id/ingHuella"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="137dp"
+                                android:src="@drawable/ingreso" />
+
+
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                </androidx.cardview.widget.CardView>
 
             </RelativeLayout>
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:layout_width="130dp"
+                android:layout_height="130dp"
+                android:layout_centerHorizontal="true"
+                android:layout_marginTop="90dp"
+                android:elevation="15dp"
+                android:padding="5dp"
+                android:src="@drawable/photo_example"
+                app:civ_border_color="#D8D8D8"
+                app:civ_border_width="3dp"
+                app:shapeAppearanceOverlay="@style/circular" />
+
+        </RelativeLayout>
 
     </ScrollView>
 
