@@ -98,7 +98,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="25dp"
+                            android:layout_marginTop="35dp"
                             android:layout_marginEnd="20dp"
                             android:orientation="horizontal">
 
@@ -131,7 +131,7 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginEnd="20dp"
                             android:orientation="horizontal">
 
@@ -146,7 +146,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="15dp"
                                 android:fontFamily="@font/gilroy_semibold"
-                                android:text="Dirección domiciliar"
+                                android:text="Dirección domiciliaria"
                                 android:textColor="#5B5B5B"
                                 android:textSize="18dp" />
 
@@ -154,7 +154,7 @@
                                 android:id="@+id/ingAdd"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:layout_marginStart="85dp"
+                                android:layout_marginStart="70dp"
                                 android:src="@drawable/ingreso" />
                         </LinearLayout>
 
@@ -162,14 +162,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginEnd="20dp"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:src="@drawable/casa" />
+                                android:src="@drawable/contrasena" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -195,14 +195,14 @@
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
-                            android:layout_marginTop="35dp"
+                            android:layout_marginTop="40dp"
                             android:layout_marginEnd="20dp"
                             android:orientation="horizontal">
 
                             <ImageView
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:src="@drawable/casa" />
+                                android:src="@drawable/huella" />
 
                             <TextView
                                 android:layout_width="wrap_content"
@@ -210,7 +210,7 @@
                                 android:layout_gravity="center"
                                 android:layout_marginStart="15dp"
                                 android:fontFamily="@font/gilroy_semibold"
-                                android:text="Huella digital"
+                                android:text="Huella dactiral"
                                 android:textColor="#5B5B5B"
                                 android:textSize="18dp" />
 
@@ -218,10 +218,49 @@
                                 android:id="@+id/ingHuella"
                                 android:layout_width="30dp"
                                 android:layout_height="30dp"
-                                android:layout_marginStart="137dp"
+                                android:layout_marginStart="125dp"
                                 android:src="@drawable/ingreso" />
 
 
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginTop="40dp"
+                            android:layout_marginEnd="20dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:src="@drawable/cerrar_sesion" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:layout_marginStart="15dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:text="Cerrar sesión"
+                                android:textColor="#ce0000"
+                                android:textSize="18dp" />
+
+                            <ImageView
+                                android:id="@+id/cerrarSesion"
+                                android:layout_width="30dp"
+                                android:layout_height="30dp"
+                                android:layout_marginStart="137dp"
+                                android:src="@drawable/atras_rojo" />
+
+
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:layout_width="match_parent"
+                            android:layout_height="45dp"
+                            android:orientation="vertical">
                         </LinearLayout>
 
                     </LinearLayout>
