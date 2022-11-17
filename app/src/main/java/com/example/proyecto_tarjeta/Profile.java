@@ -15,7 +15,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Profile extends AppCompatActivity {
 
-    ImageView informacion_p, direccion, cerrar_sesion;
+    ImageView informacion_p, direccion, cerrar_sesion, regresar_main;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -25,6 +25,7 @@ public class Profile extends AppCompatActivity {
         informacion_p = findViewById(R.id.ingPI);
         direccion = findViewById(R.id.ingAdd);
         cerrar_sesion = findViewById(R.id.cerrarSesion);
+        regresar_main = findViewById(R.id.regresar_home);
 
         informacion_p.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -67,6 +68,14 @@ public class Profile extends AppCompatActivity {
                             }
                         })
                         .show();
+            }
+        });
+
+        regresar_main.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Profile.this, Home.class);
+                startActivity(intent);
             }
         });
     }

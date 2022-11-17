@@ -36,7 +36,7 @@
                     app:cardCornerRadius="60dp">
 
                     <ImageView
-                        android:id="@+id/imageView5"
+                        android:id="@+id/img_profile"
                         android:layout_width="55dp"
                         android:layout_height="55dp"
                         app:srcCompat="@drawable/photo_example" />
