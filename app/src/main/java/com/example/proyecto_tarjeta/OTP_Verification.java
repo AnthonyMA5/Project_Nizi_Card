@@ -109,6 +109,7 @@ public class OTP_Verification extends AppCompatActivity {
             @Override
             public void onTick(long millisUntilFinished) {
                 resendCode.setText("Generar nuevo código ("+(millisUntilFinished / 1000)+")");
+                resendCode.setTextColor(Color.parseColor("#6A6A6A"));
             }
 
             @Override
