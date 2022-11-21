@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity {
     RequestQueue requestQueue;
     EditText username, password;
     Button btn_login;
+    String usuario, contra;
     User user = new User();
 
     private boolean passwordShowing = false;
@@ -88,10 +89,46 @@ public class Login extends AppCompatActivity {
         btn_login.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                validarUsuario("https://nizi.red-utz.com/validar_usuario.php");
+                usuario = username.getText().toString();
+                contra = password.getText().toString();
+                if (!usuario.isEmpty() && !contra.isEmpty()){
+                    validarUsuario("https://nizi.red-utz.com/validar_usuario.php");
+                }else{
+                    new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Completa todos los campos para continuar")
+                            .show();
+                }
             }
         });
 
+    }
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+
+        checkSession();
+    }
+
+    private void checkSession() {
+        //Check if user is logged in
+        //If user is logged in --> moved to Home Activity
+
+        SessionManagement sessionManagement = new SessionManagement(Login.this);
+        int userID = sessionManagement.getSession();
+
+        if (userID != -1){
+            //User ID logged in and move to Home Activity
+            moveToHomeActivity();
+        }else{
+            //Do nothing
+        }
+    }
+
+    private void moveToHomeActivity() {
+        Intent intent = new Intent(Login.this, Home.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 
     private void validarUsuario(String URL) {
@@ -99,8 +136,10 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()){
-                    Intent intent = new Intent(getApplicationContext(), Home.class);
-                    startActivity(intent);
+                    User info_usuario = new User();
+                    SessionManagement sessionManagement = new SessionManagement(Login.this);
+                    sessionManagement.saveSession(info_usuario);
+                    moveToHomeActivity();
                 }else{
                     new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Datos incorrectos")
