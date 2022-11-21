@@ -1,5 +1,6 @@
 package com.example.proyecto_tarjeta;
 
+import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 import cn.pedant.SweetAlert.SweetAlertDialog;
@@ -8,12 +9,36 @@ import android.content.Intent;
 import android.graphics.Typeface;
 import android.os.Bundle;
 import android.text.InputType;
+import android.util.Log;
 import android.view.View;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
+
+import com.android.volley.AuthFailureError;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.util.HashMap;
+import java.util.Map;
 
 public class Login extends AppCompatActivity {
+
+    RequestQueue requestQueue;
+    EditText username, password;
+    Button btn_login;
+    User user = new User();
 
     private boolean passwordShowing = false;
     @Override
@@ -23,10 +48,13 @@ public class Login extends AppCompatActivity {
 
 
         Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.gilroy_medium);
-        final EditText username = findViewById(R.id.txt_username);
-        final EditText password = findViewById(R.id.txt_password);
+
         final ImageView passwordIcon = findViewById(R.id.passwordIcon);
         final TextView signUp = findViewById(R.id.signUp);
+        btn_login = findViewById(R.id.btn_login);
+        username = findViewById(R.id.txt_log_username);
+        password = findViewById(R.id.txt_log_password);
+
 
         passwordIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -56,5 +84,48 @@ public class Login extends AppCompatActivity {
                 startActivity(new Intent(Login.this, Registro.class));
             }
         });
+
+        btn_login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                validarUsuario("https://nizi.red-utz.com/validar_usuario.php");
+            }
+        });
+
     }
+
+    private void validarUsuario(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.isEmpty()){
+                    Intent intent = new Intent(getApplicationContext(), Home.class);
+                    startActivity(intent);
+                }else{
+                    new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Datos incorrectos")
+                            .setContentText("Nombre de usuario y/o contraseña incorrectos")
+                            .show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(Login.this, error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("username", username.getText().toString());
+                parametros.put("contrasena", password.getText().toString());
+                return parametros;
+            }
+        };
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+
 }

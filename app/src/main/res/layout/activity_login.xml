@@ -53,7 +53,7 @@
 
 
             <EditText
-                android:id="@+id/txt_username"
+                android:id="@+id/txt_log_username"
                 android:layout_width="match_parent"
                 android:layout_height="55dp"
                 android:layout_marginStart="20dp"
@@ -76,7 +76,7 @@
                 android:background="@drawable/rounded_txt">
 
                 <EditText
-                    android:id="@+id/txt_password"
+                    android:id="@+id/txt_log_password"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:background="@android:color/transparent"
@@ -112,7 +112,7 @@
                 android:textSize="16sp" />
 
             <androidx.appcompat.widget.AppCompatButton
-                android:id="@+id/btn"
+                android:id="@+id/btn_login"
                 android:layout_width="match_parent"
                 android:layout_height="50dp"
                 android:layout_marginStart="20dp"
