@@ -21,46 +21,52 @@
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
                 android:layout_marginEnd="20dp"
+                android:gravity="center"
                 android:orientation="horizontal">
 
+                <LinearLayout
+                    android:layout_width="300dp"
+                    android:layout_height="wrap_content"
+                    android:orientation="horizontal">
 
-                <androidx.cardview.widget.CardView
-                    android:layout_width="55dp"
-                    android:layout_height="55dp"
-                    android:layout_gravity="center"
-                    android:layout_marginTop="5dp"
-                    android:layout_marginBottom="5dp"
-                    app:cardCornerRadius="60dp">
 
-                    <ImageView
-                        android:id="@+id/img_profile"
+                    <androidx.cardview.widget.CardView
                         android:layout_width="55dp"
                         android:layout_height="55dp"
-                        app:srcCompat="@drawable/photo_example" />
+                        android:layout_gravity="center"
+                        android:layout_marginTop="5dp"
+                        android:layout_marginBottom="5dp"
+                        app:cardCornerRadius="60dp">
 
-                </androidx.cardview.widget.CardView>
+                        <ImageView
+                            android:id="@+id/img_profile"
+                            android:layout_width="55dp"
+                            android:layout_height="55dp"
+                            app:srcCompat="@drawable/photo_example" />
 
-                <TextView
-                    android:id="@+id/txt_bienvenida"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="25dp"
-                    android:layout_marginTop="20dp"
-                    android:layout_marginEnd="20dp"
-                    android:fontFamily="@font/gilroy_semibold"
-                    android:text="¡Hola!"
-                    android:textColor="#000000"
-                    android:textSize="20sp" />
+                    </androidx.cardview.widget.CardView>
+
+                    <TextView
+                        android:id="@+id/txt_bienvenida"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="10dp"
+                        android:layout_marginTop="20dp"
+                        android:layout_marginEnd="20dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:text="¡Hola!"
+                        android:textColor="#000000"
+                        android:textSize="20sp" />
+                </LinearLayout>
 
                 <ImageView
-                    android:id="@+id/logout"
+                    android:id="@+id/btn_logout_home"
                     android:layout_width="50dp"
                     android:layout_height="50dp"
                     android:layout_gravity="center"
-                    android:layout_marginStart="71dp"
                     android:baselineAlignBottom="false"
                     app:srcCompat="@drawable/logout" />
 

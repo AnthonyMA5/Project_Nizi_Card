@@ -127,7 +127,7 @@ public class Login extends AppCompatActivity {
 
     private void moveToHomeActivity() {
         Intent intent = new Intent(Login.this, Home.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("datos",user);
         startActivity(intent);
     }
 
@@ -136,6 +136,7 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()){
+                    obtenerDatosUsuario("https://nizi.red-utz.com/busqueda_datos_usuario.php?username="+username.getText()+"&contrasena="+password.getText()+"");
                     User info_usuario = new User();
                     SessionManagement sessionManagement = new SessionManagement(Login.this);
                     sessionManagement.saveSession(info_usuario);
@@ -164,6 +165,39 @@ public class Login extends AppCompatActivity {
         };
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    private void obtenerDatosUsuario(String URL){
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++) {
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        user.setId(jsonObject.getInt("idusuario"));
+                        user.setNombre(jsonObject.getString("nombre"));
+                        user.setApellidos(jsonObject.getString("apellido"));
+                        user.setCorreo(jsonObject.getString("correo"));
+                        user.setTelefono(jsonObject.getString("telefono"));
+                        user.setUsername(jsonObject.getString("username"));
+                        user.setContrasena(jsonObject.getString("contrasena"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Error de conexión")
+                        .setContentText("Verifica tu conexión a internet o intentalo más tarde")
+                        .show();
+            }
+        });
+        requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
 

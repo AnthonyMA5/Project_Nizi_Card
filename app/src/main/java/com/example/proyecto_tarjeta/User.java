@@ -1,6 +1,8 @@
 package com.example.proyecto_tarjeta;
 
-public class User {
+import java.io.Serializable;
+
+public class User implements Serializable {
     int id;
     String nombre, apellidos, correo, telefono, username, contrasena;
 
