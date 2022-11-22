@@ -5,8 +5,10 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.core.content.res.ResourcesCompat;
 
 import android.content.Intent;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.os.Bundle;
+import android.os.StrictMode;
 import android.text.InputType;
 import android.view.View;
 import android.widget.Button;
@@ -26,6 +28,15 @@ import com.android.volley.toolbox.Volley;
 import java.net.URL;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.Properties;
+
+import javax.mail.Authenticator;
+import javax.mail.Message;
+import javax.mail.PasswordAuthentication;
+import javax.mail.Session;
+import javax.mail.Transport;
+import javax.mail.internet.InternetAddress;
+import javax.mail.internet.MimeMessage;
 
 import cn.pedant.SweetAlert.SweetAlertDialog;
 
@@ -34,7 +45,9 @@ public class Registro extends AppCompatActivity {
     private boolean passwordShowing = false;
     private boolean Check = false;
 
+
     EditText nombre, apellidos, telefono, correo, contrasena, nombre_usuario;
+    String nombre_su, apellidos_su, telefono_su, correo_su, contrasena_su, username_su;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -95,8 +108,27 @@ public class Registro extends AppCompatActivity {
             @Override
             public void onClick(View view) {
 
-                ejecutarServicio("https://nizi.red-utz.com/insertar_usuario.php");
+                nombre_su = nombre.getText().toString();
+                apellidos_su = apellidos.getText().toString();
+                telefono_su = telefono.getText().toString();
+                correo_su= correo.getText().toString();
+                contrasena_su = contrasena.getText().toString();
+                username_su = nombre_usuario.getText().toString();
 
+                if (!nombre_su.isEmpty() && !apellidos_su.isEmpty() && !telefono_su.isEmpty() && !correo_su.isEmpty() && !username_su.isEmpty() && !contrasena_su.isEmpty()){
+                    if (Check != true){
+                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Es necesario que aceptes los Términos y Condiciones")
+                                .show();
+                    }else{
+                        ejecutarServicio("https://nizi.red-utz.com/insertar_usuario.php");
+                    }
+                }else{
+                    new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Completa todos los campos para continuar")
+                            .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                            .show();
+                }
             }
         });
 
