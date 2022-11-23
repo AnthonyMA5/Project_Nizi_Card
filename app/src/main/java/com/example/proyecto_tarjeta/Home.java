@@ -1,6 +1,7 @@
 package com.example.proyecto_tarjeta;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.cardview.widget.CardView;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -13,23 +14,19 @@ import android.widget.TextView;
 
 public class Home extends AppCompatActivity {
 
-    Bundle bundle;
     ImageView access_profile, logout_home;
     TextView bienvenida;
+    CardView ingreso_dinero;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        /*bundle = getIntent().getExtras();
-        User user = (User) bundle.getSerializable("datos");*/
-
         access_profile = findViewById(R.id.img_profile);
         logout_home = findViewById(R.id.btn_logout_home);
         bienvenida = findViewById(R.id.txt_bienvenida);
-
-        //bienvenida.setText(user.getNombre());
+        ingreso_dinero = findViewById(R.id.ingresarDinero);
 
         access_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -43,6 +40,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 logout();
+            }
+        });
+
+        ingreso_dinero.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Home.this, Ingresar_Saldo.class);
+                startActivity(intent);
             }
         });
     }

@@ -38,6 +38,7 @@ public class Login extends AppCompatActivity {
     RequestQueue requestQueue;
     EditText username, password;
     Button btn_login;
+    TextView ejemplo;
     String usuario, contra;
     User user = new User();
 
@@ -55,7 +56,7 @@ public class Login extends AppCompatActivity {
         btn_login = findViewById(R.id.btn_login);
         username = findViewById(R.id.txt_log_username);
         password = findViewById(R.id.txt_log_password);
-
+        ejemplo = findViewById(R.id.textView);
 
         passwordIcon.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -127,7 +128,6 @@ public class Login extends AppCompatActivity {
 
     private void moveToHomeActivity() {
         Intent intent = new Intent(Login.this, Home.class);
-        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK).putExtra("datos",user);
         startActivity(intent);
     }
 
@@ -137,9 +137,6 @@ public class Login extends AppCompatActivity {
             public void onResponse(String response) {
                 if (!response.isEmpty()){
                     obtenerDatosUsuario("https://nizi.red-utz.com/busqueda_datos_usuario.php?username="+username.getText()+"&contrasena="+password.getText()+"");
-                    User info_usuario = new User();
-                    SessionManagement sessionManagement = new SessionManagement(Login.this);
-                    sessionManagement.saveSession(info_usuario);
                     moveToHomeActivity();
                 }else{
                     new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
@@ -168,6 +165,7 @@ public class Login extends AppCompatActivity {
     }
 
     private void obtenerDatosUsuario(String URL){
+        User user = new User();
         JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
             @Override
             public void onResponse(JSONArray response) {
@@ -198,6 +196,7 @@ public class Login extends AppCompatActivity {
         });
         requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(jsonArrayRequest);
+
     }
 
 
