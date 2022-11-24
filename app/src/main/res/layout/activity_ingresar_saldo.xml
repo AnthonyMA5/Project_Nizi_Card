@@ -98,6 +98,7 @@
     </LinearLayout>
 
     <Button
+        android:id="@+id/continuar_paypal"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_button_magenta"

@@ -61,6 +61,7 @@
             android:orientation="vertical">
 
             <LinearLayout
+                android:layout_marginTop="25dp"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:orientation="vertical">
@@ -68,19 +69,48 @@
                 <LinearLayout
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
                     android:orientation="horizontal">
 
                     <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"/>
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/paypal"/>
 
-                    <TextView
+                    <LinearLayout
+                        android:id="@+id/paypal_desc"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:textColor="@color/black"
-                        android:textSize="18dp"
-                        android:fontFamily="@font/gilroy_medium"
-                        android:text="Establecimientos participantes"/>
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="PayPal"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Recarga utilizando PayPal"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/abrir_paypal"
+                        android:layout_marginTop="5dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="28dp"
+                        android:src="@drawable/ingreso"/>
 
                 </LinearLayout>
 
@@ -95,20 +125,73 @@
                 android:layout_marginEnd="20dp"
                 android:background="#b9b9bb" />
 
+            <LinearLayout
+                android:layout_marginTop="25dp"
+                android:layout_marginBottom="25dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginTop="10dp"
+                        android:layout_width="40dp"
+                        android:layout_height="40dp"
+                        android:src="@drawable/paypal"/>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Establecimientos"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Recarga en establecimientos"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="participantes"/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:layout_marginTop="15dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:layout_marginStart="5dp"
+                        android:src="@drawable/ingreso"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
         </LinearLayout>
 
     </androidx.cardview.widget.CardView>
-
-    <Button
-        android:layout_gravity="center"
-        android:layout_marginTop="80dp"
-        android:background="@drawable/rounded_button_magenta"
-        android:layout_width="150dp"
-        android:textSize="20dp"
-        android:textColor="@color/white"
-        android:layout_height="wrap_content"
-        android:textAllCaps="false"
-        android:fontFamily="@font/gilroy_semibold"
-        android:text="Continuar"/>
 
 </LinearLayout>
