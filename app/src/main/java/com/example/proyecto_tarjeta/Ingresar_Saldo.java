@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ImageView;
 
 import com.paypal.android.sdk.payments.PayPalConfiguration;
 import com.paypal.android.sdk.payments.PayPalPayment;
@@ -26,6 +27,8 @@ public class Ingresar_Saldo extends AppCompatActivity {
 
     Button open_paypal;
     EditText monto;
+    ImageView atras;
+
 
     public static final String clientID = "ATMY7X5gZ05-2hVSTjcA1_KHSy3nBx3VBZUOmQFaohXH_hhoCEtpERW86LJRDQ024qV14f-KhBGmpWvQ";
     public static final int PAYPAL_REQUEST_CODE = 123;
@@ -40,6 +43,15 @@ public class Ingresar_Saldo extends AppCompatActivity {
 
         open_paypal = findViewById(R.id.continuar_paypal);
         monto = findViewById(R.id.monto_ingresar);
+        atras = findViewById(R.id.regresar_metodois);
+
+        atras.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent = new Intent(Ingresar_Saldo.this, Metodos_IS.class);
+                startActivity(intent);
+            }
+        });
         
         open_paypal.setOnClickListener(new View.OnClickListener() {
             @Override

@@ -37,6 +37,7 @@ android {
 
 dependencies {
 
+    implementation 'com.google.android.gms:play-services-maps:18.1.0'
     implementation 'com.paypal.sdk:paypal-android-sdk:2.14.2'
     implementation 'com.github.f0ris.sweetalert:library:1.6.2'
     implementation 'androidx.appcompat:appcompat:1.5.1'

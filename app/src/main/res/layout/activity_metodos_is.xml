@@ -31,7 +31,7 @@
             android:layout_marginTop="24dp"
             android:layout_toEndOf="@+id/regresar_home"
             android:fontFamily="@font/gilroy_semibold"
-            android:text="Ingresar saldo"
+            android:text="Ingresar dinero"
             android:textColor="@color/black"
             android:textSize="22dp" />
     </LinearLayout>
@@ -143,7 +143,7 @@
                         android:layout_marginTop="10dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/paypal"/>
+                        android:src="@drawable/establecimiento"/>
 
                     <LinearLayout
                         android:layout_width="wrap_content"
@@ -180,11 +180,13 @@
                     </LinearLayout>
 
                     <ImageView
+                        android:id="@+id/abrir_establecimientos"
                         android:layout_marginTop="15dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
                         android:layout_marginStart="5dp"
-                        android:src="@drawable/ingreso"/>
+                        android:src="@drawable/ingreso"
+                        tools:ignore="InvalidId" />
 
                 </LinearLayout>
 

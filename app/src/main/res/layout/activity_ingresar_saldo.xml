@@ -15,7 +15,7 @@
         tools:ignore="MissingConstraints">
 
         <ImageView
-            android:id="@+id/regresar_home"
+            android:id="@+id/regresar_metodois"
             android:layout_width="50dp"
             android:layout_height="50dp"
             android:layout_marginStart="20dp"
@@ -37,15 +37,16 @@
     </LinearLayout>
 
     <com.airbnb.lottie.LottieAnimationView
+        android:layout_gravity="center"
         android:id="@+id/intro_anim"
-        android:layout_width="match_parent"
+        android:layout_width="350dp"
         android:layout_height="350dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/is_1"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/ingresar_saldo1" />
+        app:lottie_rawRes="@raw/cantidad_saldo" />
 
     <LinearLayout
         android:id="@+id/info_is"

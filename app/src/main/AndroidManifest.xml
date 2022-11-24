@@ -12,6 +12,20 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.ProyectoTarjeta"
         tools:targetApi="31">
+
+        <meta-data
+            android:name="com.google.android.geo.API_KEY"
+            android:value="AIzaSyCsGZd7Pf2N5zpfk1frqEYYzfUD_72f3og"
+            />
+
+        <activity
+            android:name=".Establecimiento_Mapa"
+            android:exported="false"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            <meta-data
+                android:name="android.app.lib_name"
+                android:value="" />
+        </activity>
         <activity
             android:name=".Metodos_IS"
             android:exported="false"

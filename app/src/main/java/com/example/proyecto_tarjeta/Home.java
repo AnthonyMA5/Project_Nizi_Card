@@ -46,7 +46,7 @@ public class Home extends AppCompatActivity {
         ingreso_dinero.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(Home.this, Ingresar_Saldo.class);
+                Intent intent = new Intent(Home.this, Metodos_IS.class);
                 startActivity(intent);
             }
         });
