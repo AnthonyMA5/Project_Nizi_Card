@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/regresar_is"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="14dp"
             android:src="@drawable/atras_b">
@@ -27,8 +27,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="18dp"
             android:layout_toEndOf="@+id/regresar_home"
             android:fontFamily="@font/gilroy_semibold"
             android:text="Ingresar dinero"
@@ -74,9 +74,10 @@
                     android:orientation="horizontal">
 
                     <ImageView
+                        android:layout_marginTop="15dp"
                         android:layout_width="40dp"
                         android:layout_height="40dp"
-                        android:src="@drawable/paypal"/>
+                        android:src="@drawable/stripe"/>
 
                     <LinearLayout
                         android:id="@+id/paypal_desc"
@@ -91,7 +92,7 @@
                             android:layout_marginStart="9dp"
                             android:textSize="18dp"
                             android:fontFamily="@font/gilroy_medium"
-                            android:text="PayPal"/>
+                            android:text="Stripe"/>
 
                         <TextView
                             android:layout_width="wrap_content"
@@ -100,16 +101,25 @@
                             android:layout_marginStart="9dp"
                             android:textSize="18dp"
                             android:fontFamily="@font/gilroy_medium"
-                            android:text="Recarga utilizando PayPal"/>
+                            android:text="Recarga con tu tarjeta de"/>
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="crédito o débito"/>
 
                     </LinearLayout>
 
                     <ImageView
                         android:id="@+id/abrir_paypal"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="20dp"
                         android:layout_width="30dp"
                         android:layout_height="30dp"
-                        android:layout_marginStart="28dp"
+                        android:layout_marginStart="32dp"
                         android:src="@drawable/ingreso"/>
 
                 </LinearLayout>
@@ -175,7 +185,7 @@
                             android:layout_marginStart="9dp"
                             android:textSize="18dp"
                             android:fontFamily="@font/gilroy_medium"
-                            android:text="participantes"/>
+                            android:text="autorizados"/>
 
                     </LinearLayout>
 

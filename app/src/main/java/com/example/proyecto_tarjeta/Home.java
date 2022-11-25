@@ -16,7 +16,7 @@ public class Home extends AppCompatActivity {
 
     ImageView access_profile, logout_home;
     TextView bienvenida;
-    CardView ingreso_dinero;
+    CardView ingreso_dinero, mi_tarjeta;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -27,6 +27,7 @@ public class Home extends AppCompatActivity {
         logout_home = findViewById(R.id.btn_logout_home);
         bienvenida = findViewById(R.id.txt_bienvenida);
         ingreso_dinero = findViewById(R.id.ingresarDinero);
+        mi_tarjeta = findViewById(R.id.miTarjeta);
 
         access_profile.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -47,6 +48,14 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Metodos_IS.class);
+                startActivity(intent);
+            }
+        });
+
+        mi_tarjeta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Tarjeta.class);
                 startActivity(intent);
             }
         });

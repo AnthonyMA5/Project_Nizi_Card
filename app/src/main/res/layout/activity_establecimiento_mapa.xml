@@ -17,8 +17,8 @@
 
         <ImageView
             android:id="@+id/regresar_establecimientos"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
             android:layout_marginStart="5dp"
             android:layout_marginTop="14dp"
             android:src="@drawable/atras_b">
@@ -28,10 +28,11 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="24dp"
+            android:layout_marginTop="18dp"
+            android:layout_marginStart="3dp"
             android:layout_toEndOf="@+id/regresar_home"
             android:fontFamily="@font/gilroy_semibold"
-            android:text="Establecimientos participantes"
+            android:text="Establecimientos autorizados"
             android:textColor="@color/black"
             android:textSize="22dp" />
     </LinearLayout>

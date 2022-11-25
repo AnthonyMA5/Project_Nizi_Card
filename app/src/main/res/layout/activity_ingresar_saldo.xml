@@ -16,8 +16,8 @@
 
         <ImageView
             android:id="@+id/regresar_metodois"
-            android:layout_width="50dp"
-            android:layout_height="50dp"
+            android:layout_width="40dp"
+            android:layout_height="37dp"
             android:layout_marginStart="20dp"
             android:layout_marginTop="14dp"
             android:src="@drawable/atras_b">
@@ -27,8 +27,8 @@
         <TextView
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="8dp"
-            android:layout_marginTop="24dp"
+            android:layout_marginStart="3dp"
+            android:layout_marginTop="18dp"
             android:layout_toEndOf="@+id/regresar_home"
             android:fontFamily="@font/gilroy_semibold"
             android:text="Monto a ingresar"
@@ -46,7 +46,7 @@
         app:layout_constraintTop_toBottomOf="@+id/is_1"
         app:lottie_autoPlay="true"
         app:lottie_loop="true"
-        app:lottie_rawRes="@raw/cantidad_saldo" />
+        app:lottie_rawRes="@raw/ingresar_saldo1" />
 
     <LinearLayout
         android:id="@+id/info_is"
@@ -99,7 +99,7 @@
     </LinearLayout>
 
     <Button
-        android:id="@+id/continuar_paypal"
+        android:id="@+id/continuar_stripe"
         android:layout_gravity="center"
         android:layout_marginTop="80dp"
         android:background="@drawable/rounded_button_magenta"

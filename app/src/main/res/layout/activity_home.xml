@@ -113,7 +113,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="25dp"
                 android:layout_marginEnd="20dp"
-                app:cardCornerRadius="15dp">
+                app:cardCornerRadius="17dp">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -155,7 +155,7 @@
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:layout_below="@+id/part1"
-                        android:layout_marginTop="20dp"
+                        android:layout_marginTop="30dp"
                         android:gravity="center"
                         android:orientation="horizontal">
 
@@ -185,24 +185,15 @@
                     </LinearLayout>
 
                     <TextView
-                        android:id="@+id/claveTarjeta"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_below="@+id/part2"
-                        android:layout_marginStart="20dp"
-                        android:layout_marginTop="25dp"
-                        android:fontFamily="@font/gilroy_semibold"
-                        android:text="1234  1234  1234  1234"
-                        android:textColor="@color/white"
-                        android:textSize="18sp" />
-
-                    <TextView
+                        android:gravity="center"
                         android:id="@+id/dueñoCuenta"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@+id/claveTarjeta"
+                        android:layout_below="@+id/part2"
+                        android:layout_alignParentBottom="true"
                         android:layout_marginStart="20dp"
-                        android:layout_marginTop="5dp"
+                        android:layout_marginTop="28dp"
+                        android:layout_marginBottom="10dp"
                         android:fontFamily="@font/gilroy_semibold"
                         android:text="Anthony Martinez Arellano"
                         android:textColor="@color/white"
@@ -320,7 +311,7 @@
                     android:orientation="vertical">
 
                     <androidx.cardview.widget.CardView
-                        android:id="@+id/misTarjetas"
+                        android:id="@+id/miTarjeta"
                         android:layout_width="69dp"
                         android:layout_height="65dp"
                         android:layout_gravity="center"
@@ -344,7 +335,7 @@
                         android:textColor="@color/black"
                         android:textSize="17dp"
                         android:fontFamily="@font/gilroy_semibold"
-                        android:text="Mis"/>
+                        android:text="Mi"/>
 
                     <TextView
                         android:layout_width="wrap_content"
@@ -352,7 +343,7 @@
                         android:textColor="@color/black"
                         android:textSize="17dp"
                         android:fontFamily="@font/gilroy_semibold"
-                        android:text="tarjetas"/>
+                        android:text="tarjeta"/>
 
                 </LinearLayout>
 

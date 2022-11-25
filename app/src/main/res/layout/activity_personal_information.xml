@@ -30,9 +30,9 @@
 
                 <ImageView
                     android:id="@+id/btnAtrasPerfil"
-                    android:layout_width="45dp"
+                    android:layout_width="40dp"
                     android:layout_marginTop="14dp"
-                    android:layout_height="50dp"
+                    android:layout_height="37dp"
                     android:layout_marginStart="20dp"
                     android:src="@drawable/atras">
 
@@ -41,8 +41,8 @@
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="8dp"
-                    android:layout_marginTop="24dp"
+                    android:layout_marginStart="3dp"
+                    android:layout_marginTop="18dp"
                     android:layout_toEndOf="@+id/btnAtrasPerfil"
                     android:fontFamily="@font/gilroy_semibold"
                     android:text="Información personal"
