@@ -18,7 +18,7 @@ public class MainActivity extends AppCompatActivity {
         TimerTask actividad = new TimerTask() {
             @Override
             public void run() {
-                Intent intent = new Intent(MainActivity.this, Introduction.class);
+                Intent intent = new Intent(MainActivity.this, Change_Password.class);
                 startActivity(intent);
                 finish();
             }

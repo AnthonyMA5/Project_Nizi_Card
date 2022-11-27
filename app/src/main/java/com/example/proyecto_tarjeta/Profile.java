@@ -8,6 +8,7 @@ import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 
 import com.google.android.material.tabs.TabLayout;
 
@@ -16,6 +17,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Profile extends AppCompatActivity {
 
     ImageView informacion_p, direccion, cerrar_sesion, regresar_main;
+    LinearLayout change_pass;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -26,6 +28,15 @@ public class Profile extends AppCompatActivity {
         direccion = findViewById(R.id.ingAdd);
         cerrar_sesion = findViewById(R.id.cerrarSesion);
         regresar_main = findViewById(R.id.regresar_home);
+        change_pass = findViewById(R.id.change_pass);
+
+        change_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Profile.this, Change_Password.class);
+                startActivity(intent);
+            }
+        });
 
         informacion_p.setOnClickListener(new View.OnClickListener() {
             @Override
