@@ -37,17 +37,163 @@
             android:textSize="22dp" />
     </LinearLayout>
 
+    <androidx.cardview.widget.CardView
+        app:layout_constraintTop_toBottomOf="@+id/is_1"
+        android:id="@+id/card_establecimientos"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        app:cardCornerRadius="15dp"
+        app:cardElevation="10dp"
+        app:cardUseCompatPadding="true"
+        tools:ignore="MissingConstraints">
+
+        <LinearLayout
+            android:id="@+id/contenedor1"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginBottom="17dp"
+            android:orientation="vertical">
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_marginTop="17dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/coffe_win"/>
+
+                    <LinearLayout
+                        android:id="@+id/paypal_desc"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Coffee Win"/>
+
+                        <TextView
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="16dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:justificationMode="inter_word"
+                            android:text="Carretera Santa Cruz-San Isidro 880 A Santa Cruz de las Flores, 45640 Tlajomulco de Zúñiga, Jal."/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/abrir_paypal"
+                        android:layout_marginTop="22dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ingreso"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+            <View
+                android:id="@+id/divisor"
+                android:layout_width="match_parent"
+                android:layout_height="1dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="25dp"
+                android:layout_marginEnd="20dp"
+                android:background="#b9b9bb" />
+
+            <LinearLayout
+                android:layout_marginTop="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="vertical">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="horizontal">
+
+                    <de.hdodenhof.circleimageview.CircleImageView
+                        android:layout_marginTop="7dp"
+                        android:layout_width="45dp"
+                        android:layout_height="45dp"
+                        android:src="@drawable/mariscos_h"/>
+
+                    <LinearLayout
+                        android:id="@+id/paypal_desc2"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:orientation="vertical">
+
+                        <TextView
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:textColor="@color/black"
+                            android:layout_marginStart="9dp"
+                            android:textSize="18dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:text="Mariscos La Herradura"/>
+
+                        <TextView
+                            android:layout_width="250dp"
+                            android:layout_height="wrap_content"
+                            android:textColor="#616161"
+                            android:layout_marginStart="9dp"
+                            android:textSize="16dp"
+                            android:fontFamily="@font/gilroy_medium"
+                            android:justificationMode="inter_word"
+                            android:text="C. Constitución 84, Centro, 45640 San Sebastián el Grande, Jal."/>
+
+                    </LinearLayout>
+
+                    <ImageView
+                        android:id="@+id/abrir_paypal2"
+                        android:layout_marginTop="15dp"
+                        android:layout_marginStart="5dp"
+                        android:layout_width="30dp"
+                        android:layout_height="30dp"
+                        android:src="@drawable/ingreso"/>
+
+                </LinearLayout>
+
+            </LinearLayout>
+
+        </LinearLayout>
+
+    </androidx.cardview.widget.CardView>
+
     <fragment
         android:id="@+id/map"
         android:name="com.google.android.gms.maps.SupportMapFragment"
         android:layout_width="match_parent"
-        android:layout_height="550dp"
+        android:layout_height="450dp"
         android:layout_marginStart="5dp"
         android:layout_marginTop="10dp"
         android:layout_marginEnd="5dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/is_1"
+        app:layout_constraintTop_toBottomOf="@+id/card_establecimientos"
         map:cameraZoom="10"
         map:uiRotateGestures="true"
         map:uiZoomControls="true" />

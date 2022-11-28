@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="utf-8"?>
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
+
+
+    <item
+        android:id="@+id/nav_home"
+        android:fontFamily="@font/gilroy_semibold"
+        android:icon="@drawable/nv_home"
+        android:title="Inicio" />
+
+    <item
+        android:id="@+id/nav_movimientos"
+        android:fontFamily="@font/gilroy_semibold"
+        android:icon="@drawable/nv_movimientos"
+        android:title="Movimientos" />
+
+    <item
+        android:id="@+id/nav_tarjeta"
+        android:icon="@drawable/nv_tarjeta"
+        android:fontFamily="@font/gilroy_semibold"
+        android:title="Mi tarjeta" />
+
+    <item
+        android:id="@+id/nav_perfil"
+        android:icon="@drawable/nv_usuario"
+        android:title="Perfil" />
+
+
+</menu>

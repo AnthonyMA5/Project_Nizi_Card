@@ -43,9 +43,12 @@ public class Establecimiento_Mapa extends AppCompatActivity implements OnMapRead
     public void onMapReady(@NonNull GoogleMap googleMap) {
         gMap = googleMap;
         gMap.getUiSettings().setZoomControlsEnabled(true);
-        float zoomLevel = 16.0f;
+        LatLng p_medio = new LatLng(20.509004, -103.487034);
+        float zoomLevel = 11.5f;
         LatLng coffewin = new LatLng(20.4824158,-103.5331226);
+        LatLng mariscos_h = new LatLng(20.53114983980939, -103.42407765637111);
         gMap.addMarker(new MarkerOptions().position(coffewin).title("Coffee Win"));
-        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(coffewin, zoomLevel));
+        gMap.addMarker(new MarkerOptions().position(mariscos_h).title("Mariscos La Herradura"));
+        gMap.moveCamera(CameraUpdateFactory.newLatLngZoom(p_medio, zoomLevel));
     }
 }
