@@ -38,7 +38,7 @@ public class Login extends AppCompatActivity {
     RequestQueue requestQueue;
     EditText username, password;
     Button btn_login;
-    TextView ejemplo;
+    TextView ejemplo, forget_pass;
     String usuario, contra;
     User user = new User();
 
@@ -57,6 +57,14 @@ public class Login extends AppCompatActivity {
         username = findViewById(R.id.txt_log_username);
         password = findViewById(R.id.txt_log_password);
         ejemplo = findViewById(R.id.textView);
+        forget_pass = findViewById(R.id.forgetPass);
+
+        forget_pass.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                startActivity(new Intent(Login.this, Forget_Password.class));
+            }
+        });
 
         passwordIcon.setOnClickListener(new View.OnClickListener() {
             @Override
