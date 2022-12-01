@@ -23,6 +23,8 @@ import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.JsonArrayRequest;
+import com.android.volley.toolbox.JsonObjectRequest;
+import com.android.volley.toolbox.JsonRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
@@ -101,7 +103,7 @@ public class Login extends AppCompatActivity {
                 usuario = username.getText().toString();
                 contra = password.getText().toString();
                 if (!usuario.isEmpty() && !contra.isEmpty()){
-                    validarUsuario("https://nizi.red-utz.com/validar_usuario.php");
+                    validarUsuario("https://nizi.red-utz.com/login_usuarios.php");
                 }else{
                     new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Completa todos los campos para continuar")
@@ -110,6 +112,43 @@ public class Login extends AppCompatActivity {
             }
         });
 
+    }
+
+
+    private void validarUsuario(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                if (!response.isEmpty()){
+                    Intent intent = new Intent(Login.this, Home.class);
+                    startActivity(intent);
+                }else{
+                    new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Nombre de usuario y/o contraseña incorrectos")
+                            .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                            .show();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText(error.toString())
+                        .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                        .show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<String, String>();
+                parametros.put("username", username.getText().toString());
+                parametros.put("contrasena", password.getText().toString());
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     @Override
@@ -137,74 +176,6 @@ public class Login extends AppCompatActivity {
     private void moveToHomeActivity() {
         Intent intent = new Intent(Login.this, Home.class);
         startActivity(intent);
-    }
-
-    private void validarUsuario(String URL) {
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                if (!response.isEmpty()){
-                    obtenerDatosUsuario("https://nizi.red-utz.com/busqueda_datos_usuario.php?username="+username.getText()+"&contrasena="+password.getText()+"");
-                    moveToHomeActivity();
-                }else{
-                    new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("Datos incorrectos")
-                            .setContentText("Nombre de usuario y/o contraseña incorrectos")
-                            .show();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(Login.this, error.toString(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("username", username.getText().toString());
-                parametros.put("contrasena", password.getText().toString());
-                return parametros;
-            }
-        };
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }
-
-    private void obtenerDatosUsuario(String URL){
-        User user = new User();
-        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
-            @Override
-            public void onResponse(JSONArray response) {
-                JSONObject jsonObject = null;
-                for (int i = 0; i < response.length(); i++) {
-                    try {
-                        jsonObject = response.getJSONObject(i);
-                        user.setId(jsonObject.getInt("idusuario"));
-                        user.setNombre(jsonObject.getString("nombre"));
-                        user.setApellidos(jsonObject.getString("apellido"));
-                        user.setCorreo(jsonObject.getString("correo"));
-                        user.setTelefono(jsonObject.getString("telefono"));
-                        user.setUsername(jsonObject.getString("username"));
-                        user.setContrasena(jsonObject.getString("contrasena"));
-                    } catch (JSONException e) {
-                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Error de conexión")
-                        .setContentText("Verifica tu conexión a internet o intentalo más tarde")
-                        .show();
-            }
-        });
-        requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(jsonArrayRequest);
-
     }
 
 

@@ -15,6 +15,8 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.JsonRequest;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
@@ -22,7 +24,7 @@ public class Home extends AppCompatActivity {
 
     BottomNavigationView nav_bottom;
     ImageView access_profile, logout_home;
-    TextView bienvenida;
+    TextView bienvenida, nom_tarjeta;
     CardView ingreso_dinero, mi_tarjeta, movimientos;
 
     @Override
@@ -30,8 +32,11 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
+
+
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        nom_tarjeta = findViewById(R.id.dueñoCuenta);
         nav_bottom = findViewById(R.id.bttom_nav);
         access_profile = findViewById(R.id.img_profile);
         logout_home = findViewById(R.id.btn_logout_home);
@@ -39,6 +44,8 @@ public class Home extends AppCompatActivity {
         ingreso_dinero = findViewById(R.id.ingresarDinero);
         mi_tarjeta = findViewById(R.id.miTarjeta);
         movimientos = findViewById(R.id.verMovimientos);
+
+
 
         nav_bottom.setSelectedItemId(R.id.nav_home);
 
@@ -105,6 +112,8 @@ public class Home extends AppCompatActivity {
             }
         });
     }
+
+
 
     public void logout() {
         SessionManagement sessionManagement = new SessionManagement(Home.this);
