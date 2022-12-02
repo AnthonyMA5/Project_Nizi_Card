@@ -42,13 +42,14 @@ public class Login extends AppCompatActivity {
     Button btn_login;
     TextView ejemplo, forget_pass;
     String usuario, contra;
-    User user = new User();
+    User user;
 
     private boolean passwordShowing = false;
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login);
+
 
 
         Typeface typeface = ResourcesCompat.getFont(getApplicationContext(), R.font.gilroy_medium);
@@ -120,8 +121,15 @@ public class Login extends AppCompatActivity {
             @Override
             public void onResponse(String response) {
                 if (!response.isEmpty()){
-                    Intent intent = new Intent(Login.this, Home.class);
-                    startActivity(intent);
+                    try {
+                        JSONArray informacion = new JSONArray(new String(response));
+                        String id = informacion.getJSONObject(0).getString("idusuario");
+                        Intent intent = new Intent(Login.this, Home.class);
+                        intent.putExtra("idU", id);
+                        startActivity(intent);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
                 }else{
                     new SweetAlertDialog(Login.this, SweetAlertDialog.ERROR_TYPE)
                             .setTitleText("Nombre de usuario y/o contraseña incorrectos")

@@ -142,7 +142,16 @@ public class Registro extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                try {
+                if (!response.isEmpty()){
+                    new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
+                            .setTitleText("Cuenta creada con éxito")
+                            .show();
+                }else{
+                    new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("No fue posible crear tu cuenta, intentalo de nuevo más tarde")
+                            .show();
+                }
+                /*try {
                     JSONObject jsonObject = new JSONObject(response);
                     String valorjson = jsonObject.getString("message");
                     if (valorjson == "error_c"){
@@ -175,12 +184,14 @@ public class Registro extends AppCompatActivity {
                     }
                 } catch (JSONException e) {
                     e.printStackTrace();
-                }
+                }*/
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), "Error", Toast.LENGTH_SHORT).show();
+                new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                        .setTitleText("Tuvimos una falla al crear tu cuenta, intentalo de nuevo más tarde")
+                        .show();
             }
         }){
             @Nullable

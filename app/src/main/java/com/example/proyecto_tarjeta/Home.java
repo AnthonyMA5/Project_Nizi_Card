@@ -32,8 +32,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-
-
+        final String idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         nom_tarjeta = findViewById(R.id.dueñoCuenta);
@@ -45,7 +44,7 @@ public class Home extends AppCompatActivity {
         mi_tarjeta = findViewById(R.id.miTarjeta);
         movimientos = findViewById(R.id.verMovimientos);
 
-
+        nom_tarjeta.setText(idU);
 
         nav_bottom.setSelectedItemId(R.id.nav_home);
 
@@ -85,6 +84,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Profile.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
