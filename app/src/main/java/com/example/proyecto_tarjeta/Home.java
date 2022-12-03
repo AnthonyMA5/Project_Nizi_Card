@@ -58,8 +58,6 @@ public class Home extends AppCompatActivity {
         mi_tarjeta = findViewById(R.id.miTarjeta);
         movimientos = findViewById(R.id.verMovimientos);
 
-        nom_tarjeta.setText(idU);
-
         nav_bottom.setSelectedItemId(R.id.nav_home);
 
         /*String horaActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());

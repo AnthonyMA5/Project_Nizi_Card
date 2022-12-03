@@ -68,7 +68,6 @@
                             android:layout_height="wrap_content"
                             android:layout_marginTop="75dp"
                             android:fontFamily="@font/gilroy_semibold"
-                            android:text="Anthony Martinez Arellano"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="20dp" />
@@ -80,7 +79,6 @@
                             android:layout_below="@+id/nombre_1_completo_perfil"
                             android:layout_marginTop="5dp"
                             android:fontFamily="@font/gilroy_medium"
-                            android:text="anthony_ar2003@outlook.com"
                             android:textAlignment="center"
                             android:textColor="@color/black"
                             android:textSize="15dp" />

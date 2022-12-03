@@ -195,7 +195,6 @@
                         android:layout_marginTop="28dp"
                         android:layout_marginBottom="10dp"
                         android:fontFamily="@font/gilroy_semibold"
-                        android:text="Nombre con Apellidos"
                         android:textColor="@color/white"
                         android:textSize="18sp" />
 

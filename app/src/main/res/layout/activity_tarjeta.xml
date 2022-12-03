@@ -102,7 +102,6 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginBottom="20dp"
                 android:fontFamily="@font/gilroy_semibold"
-                android:text="Anthony Martinez Arellano"
                 android:textColor="@color/white"
                 android:textSize="18sp" />
 
@@ -132,7 +131,6 @@
             android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="1234 1234 1234 1234"
             android:fontFamily="@font/gilroy_medium"
             android:textSize="20dp"
             android:textColor="#565656"/>
@@ -150,7 +148,6 @@
             android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Anthony Martinez Arellano"
             android:fontFamily="@font/gilroy_medium"
             android:textSize="20dp"
             android:textColor="#565656"/>

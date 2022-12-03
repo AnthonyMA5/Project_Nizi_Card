@@ -142,55 +142,15 @@ public class Registro extends AppCompatActivity {
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                if (!response.isEmpty()){
-                    new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
-                            .setTitleText("Cuenta creada con éxito")
-                            .show();
-                }else{
-                    new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText("No fue posible crear tu cuenta, intentalo de nuevo más tarde")
-                            .show();
-                }
-                /*try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String valorjson = jsonObject.getString("message");
-                    if (valorjson == "error_c"){
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("El correo electrónico ingresado se encuentra ligado a otra cuenta")
-                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                                .show();
-                    }else if (valorjson == "error_u"){
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Nombre de usuario no disponible")
-                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                                .show();
-                    }else if (valorjson == "Correcto"){
-                        final String getEmailTxt = correo.getText().toString();
-
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Cuenta creada")
-                                .setContentText("Tu cuenta se ha creado con éxito")
-                                .setConfirmText("OK")
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
-                                    @Override
-                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(Registro.this, OTP_Verification.class);
-
-                                        intent.putExtra("email", getEmailTxt);
-                                        startActivity(intent);
-                                    }
-                                })
-                                .show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }*/
+                new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Cuenta creada con éxito")
+                        .show();
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
                 new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText("Tuvimos una falla al crear tu cuenta, intentalo de nuevo más tarde")
+                        .setTitleText(error.getMessage())
                         .show();
             }
         }){
