@@ -33,6 +33,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Ingresar_Saldo extends AppCompatActivity {
 
+    String idU;
     Button open_stripe;
     EditText monto;
     ImageView atras;
@@ -49,6 +50,7 @@ public class Ingresar_Saldo extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingresar_saldo);
 
+        idU = getIntent().getStringExtra("idU");
         open_stripe = findViewById(R.id.continuar_stripe);
         monto = findViewById(R.id.monto_ingresar);
         atras = findViewById(R.id.regresar_metodois);
@@ -57,6 +59,7 @@ public class Ingresar_Saldo extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Ingresar_Saldo.this, Metodos_IS.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });

@@ -14,12 +14,6 @@ public class SessionManagement {
         editor = sharedPreferences.edit();
     }
 
-    public void saveSession(User user){
-        //save session of user whenever user is logged in
-        int id = user.getId();
-        editor.putInt(SESSION_KEY, id).commit();
-    }
-
     public int getSession(){
        //return user id whose session is saved
         return sharedPreferences.getInt(SESSION_KEY, -1);

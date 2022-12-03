@@ -15,6 +15,7 @@ import com.google.android.material.navigation.NavigationBarView;
 
 public class Tarjeta extends AppCompatActivity {
 
+    String idU;
     BottomNavigationView nav_bottom;
     ImageView regresar;
 
@@ -22,6 +23,8 @@ public class Tarjeta extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_tarjeta);
+
+        idU = getIntent().getStringExtra("idU");
 
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
@@ -36,17 +39,23 @@ public class Tarjeta extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(),Home.class));
+                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                        intent.putExtra("idU", idU);
+                        startActivity(intent);
                         overridePendingTransition(R.anim.enter_from_left,R.anim.exit_out_right);
                         return true;
                     case R.id.nav_movimientos:
-                        startActivity(new Intent(getApplicationContext(),Movimientos.class));
+                        Intent intent1 = new Intent(getApplicationContext(), Movimientos.class);
+                        intent1.putExtra("idU", idU);
+                        startActivity(intent1);
                         overridePendingTransition(R.anim.enter_from_left,R.anim.exit_out_right);
                         return true;
                     case R.id.nav_tarjeta:
                         return true;
                     case R.id.nav_perfil:
-                        startActivity(new Intent(getApplicationContext(),Profile.class));
+                        Intent intent2 = new Intent(getApplicationContext(), Profile.class);
+                        intent2.putExtra("idU", idU);
+                        startActivity(intent2);
                         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_out_left);
                         return true;
                 }
@@ -58,6 +67,7 @@ public class Tarjeta extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Tarjeta.this, Home.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });

@@ -42,7 +42,6 @@ public class Login extends AppCompatActivity {
     Button btn_login;
     TextView ejemplo, forget_pass;
     String usuario, contra;
-    User user;
 
     private boolean passwordShowing = false;
     @Override

@@ -14,14 +14,28 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.JsonRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
+import java.text.SimpleDateFormat;
+import java.util.Date;
+import java.util.Locale;
+
 public class Home extends AppCompatActivity {
 
+    String idU;
     BottomNavigationView nav_bottom;
     ImageView access_profile, logout_home;
     TextView bienvenida, nom_tarjeta;
@@ -32,7 +46,7 @@ public class Home extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home);
 
-        final String idU = getIntent().getStringExtra("idU");
+        idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         nom_tarjeta = findViewById(R.id.dueñoCuenta);
@@ -48,6 +62,17 @@ public class Home extends AppCompatActivity {
 
         nav_bottom.setSelectedItemId(R.id.nav_home);
 
+        /*String horaActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
+        String bnosDias="07:00";
+        String bnosTardes="12:00";
+        String bnasNoches="19:00";
+
+        if (horaActual.equals()bnosDias){
+
+        }*/
+
+        datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
+
         nav_bottom.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
             public boolean onNavigationItemSelected(@NonNull MenuItem item) {
@@ -56,15 +81,20 @@ public class Home extends AppCompatActivity {
                     case R.id.nav_home:
                         return true;
                     case R.id.nav_movimientos:
-                        startActivity(new Intent(getApplicationContext(),Movimientos.class));
-                        overridePendingTransition(R.anim.enter_from_right,R.anim.exit_out_left);
+                        Intent intent = new Intent(getApplicationContext(), Movimientos.class);
+                        intent.putExtra("idU", idU);
+                        startActivity(intent);
                         return true;
                     case R.id.nav_tarjeta:
-                        startActivity(new Intent(getApplicationContext(),Tarjeta.class));
+                        Intent intent1 = new Intent(getApplicationContext(), Tarjeta.class);
+                        intent1.putExtra("idU", idU);
+                        startActivity(intent1);
                         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_out_left);
                         return true;
                     case R.id.nav_perfil:
-                        startActivity(new Intent(getApplicationContext(),Profile.class));
+                        Intent intent2 = new Intent(getApplicationContext(), Profile.class);
+                        intent2.putExtra("idU", idU);
+                        startActivity(intent2);
                         overridePendingTransition(R.anim.enter_from_right,R.anim.exit_out_left);
                         return true;
                 }
@@ -76,6 +106,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Movimientos.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
@@ -100,6 +131,7 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Home.this, Metodos_IS.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
@@ -108,9 +140,34 @@ public class Home extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Home.this, Tarjeta.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
+    }
+
+    private void datosUsuario(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        nom_tarjeta.setText(jsonObject.getString("nombre")+" "+jsonObject.getString("apellido"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
 

@@ -9,6 +9,7 @@ import android.widget.ImageView;
 
 public class Domicilio extends AppCompatActivity {
 
+    String idU;
     ImageView regresar;
 
     @Override
@@ -16,12 +17,14 @@ public class Domicilio extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_domicilio);
 
+        idU = getIntent().getStringExtra("idU");
         regresar = findViewById(R.id.btnAtrasAddress);
 
         regresar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Domicilio.this, Profile.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });

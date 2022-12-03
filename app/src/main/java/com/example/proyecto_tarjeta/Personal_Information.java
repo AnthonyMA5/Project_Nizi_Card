@@ -57,7 +57,6 @@ public class Personal_Information extends AppCompatActivity {
         username = findViewById(R.id.username_profile);
         actualizar = findViewById(R.id.btn_act_datos);
 
-        nombre_c.setText(idU);
 
         datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
         

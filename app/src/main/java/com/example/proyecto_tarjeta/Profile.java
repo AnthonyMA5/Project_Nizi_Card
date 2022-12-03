@@ -21,11 +21,16 @@ import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
+import com.android.volley.toolbox.JsonArrayRequest;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 import com.google.android.material.navigation.NavigationBarView;
 import com.google.android.material.tabs.TabLayout;
+
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
 
 import java.util.HashMap;
 import java.util.Map;
@@ -35,7 +40,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 public class Profile extends AppCompatActivity {
 
     String idU;
-    TextView nombreperfil;
+    TextView nombreperfil, correoperfil;
     BottomNavigationView nav_bottom;
     ImageView informacion_p, direccion, cerrar_sesion, regresar_main;
     LinearLayout change_pass, eliminar_cuenta;
@@ -48,9 +53,12 @@ public class Profile extends AppCompatActivity {
         idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
+
         nav_bottom = findViewById(R.id.bttom_nav);
 
         nombreperfil = findViewById(R.id.nombre_1_completo_perfil);
+        correoperfil = findViewById(R.id.correo1_perfil);
         informacion_p = findViewById(R.id.ingPI);
         direccion = findViewById(R.id.ingAdd);
         cerrar_sesion = findViewById(R.id.cerrarSesion);
@@ -59,14 +67,13 @@ public class Profile extends AppCompatActivity {
         eliminar_cuenta = findViewById(R.id.ly_eliminar_cuenta);
 
         nav_bottom.setSelectedItemId(R.id.nav_perfil);
-        nombreperfil.setText(idU);
 
         eliminar_cuenta.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 new SweetAlertDialog(Profile.this, SweetAlertDialog.WARNING_TYPE)
                         .setTitleText("¿Quieres eliminar tu cuenta?")
-                        .setContentText("Nizi Card recién comienza, espera muchas sorpresas más en un futuro muy cercano")
+                        .setContentText("Nizi Card recién comienza, espera muchas sorpresas en un futuro muy cercano")
                         .setConfirmText("Eliminar")
                         .setConfirmButtonBackgroundColor(Color.rgb(13, 182, 51))
                         .setCancelButtonBackgroundColor(Color.rgb(182, 13, 13))
@@ -80,8 +87,8 @@ public class Profile extends AppCompatActivity {
                                         .changeAlertType(SweetAlertDialog.SUCCESS_TYPE);
 
                                         eliminarCuenta("https://nizi.red-utz.com/eliminar_cuenta_usuario.php");
-                                        Intent intent = new Intent(Profile.this, Login.class);
-                                        startActivity(intent);
+                                        //Intent intent = new Intent(Profile.this, Login.class);
+                                        //startActivity(intent);
                                 }
 
                         })
@@ -101,15 +108,21 @@ public class Profile extends AppCompatActivity {
                 switch(item.getItemId())
                 {
                     case R.id.nav_home:
-                        startActivity(new Intent(getApplicationContext(),Home.class));
+                        Intent intent = new Intent(getApplicationContext(), Home.class);
+                        intent.putExtra("idU", idU);
+                        startActivity(intent);
                         overridePendingTransition(R.anim.enter_from_left,R.anim.exit_out_right);
                         return true;
                     case R.id.nav_movimientos:
-                        startActivity(new Intent(getApplicationContext(),Movimientos.class));
+                        Intent intent1 = new Intent(getApplicationContext(), Movimientos.class);
+                        intent1.putExtra("idU", idU);
+                        startActivity(intent1);
                         overridePendingTransition(R.anim.enter_from_left,R.anim.exit_out_right);
                         return true;
                     case R.id.nav_tarjeta:
-                        startActivity(new Intent(getApplicationContext(),Tarjeta.class));
+                        Intent intent2 = new Intent(getApplicationContext(), Tarjeta.class);
+                        intent2.putExtra("idU", idU);
+                        startActivity(intent2);
                         overridePendingTransition(R.anim.enter_from_left,R.anim.exit_out_right);
                         return true;
                     case R.id.nav_perfil:
@@ -123,6 +136,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 Intent intent = new Intent(Profile.this, Change_Password.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
@@ -140,6 +154,7 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Profile.this, Domicilio.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
@@ -176,9 +191,35 @@ public class Profile extends AppCompatActivity {
             @Override
             public void onClick(View view) {
                 Intent intent = new Intent(Profile.this, Home.class);
+                intent.putExtra("idU", idU);
                 startActivity(intent);
             }
         });
+    }
+
+    private void datosUsuario(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        nombreperfil.setText(jsonObject.getString("nombre")+" "+jsonObject.getString("apellido"));
+                        correoperfil.setText(jsonObject.getString("correo"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void eliminarCuenta(String URL) {
