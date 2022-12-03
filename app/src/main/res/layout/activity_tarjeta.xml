@@ -94,16 +94,45 @@
 
             </LinearLayout>
 
-            <TextView
-                android:id="@+id/dueñoCuenta"
-                android:layout_width="wrap_content"
+            <RelativeLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_below="@+id/part1"
                 android:layout_alignParentBottom="true"
-                android:layout_marginStart="20dp"
-                android:layout_marginBottom="20dp"
-                android:fontFamily="@font/gilroy_semibold"
-                android:textColor="@color/white"
-                android:textSize="18sp" />
+                android:layout_marginTop="100dp"
+                android:layout_marginBottom="8dp"
+                android:orientation="horizontal">
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    android:layout_marginTop="10dp">
+
+                    <TextView
+                        android:id="@+id/numTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="20dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                    <TextView
+                        android:id="@+id/vigenciaTarjeta"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_alignParentBottom="true"
+                        android:layout_marginStart="55dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:textColor="@color/white"
+                        android:textSize="18sp" />
+
+                </LinearLayout>
+
+            </RelativeLayout>
+
 
         </RelativeLayout>
 
@@ -128,6 +157,7 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/tarjeta_num_tarjeta"
             android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -145,6 +175,7 @@
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/tarjeta_dueño_tarjeta"
             android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
@@ -156,16 +187,34 @@
             android:layout_marginTop="25dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Tipo de tarjeta"
+            android:text="Vigencia"
             android:fontFamily="@font/gilroy_semibold"
             android:textSize="20dp"
             android:textColor="@color/black"/>
 
         <TextView
+            android:id="@+id/tarjeta_vigencia_tarjeta"
             android:layout_marginTop="7dp"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Compra"
+            android:fontFamily="@font/gilroy_medium"
+            android:textSize="20dp"
+            android:textColor="#565656"/>
+
+        <TextView
+            android:layout_marginTop="25dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="CVV"
+            android:fontFamily="@font/gilroy_semibold"
+            android:textSize="20dp"
+            android:textColor="@color/black"/>
+
+        <TextView
+            android:id="@+id/tarjeta_cvv_tarjeta"
+            android:layout_marginTop="7dp"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
             android:fontFamily="@font/gilroy_medium"
             android:textSize="20dp"
             android:textColor="#565656"/>
@@ -173,7 +222,7 @@
 
     <LinearLayout
         android:gravity="center"
-        android:layout_marginTop="65dp"
+        android:layout_marginTop="15dp"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
         android:orientation="horizontal"

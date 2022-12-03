@@ -182,7 +182,7 @@
                             android:textSize="17dp" />
 
                         <EditText
-                            android:id="@+id/password_profile"
+                            android:id="@+id/ciudad_address"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:layout_marginStart="20dp"
@@ -252,6 +252,7 @@
                         </LinearLayout>
 
                         <Button
+                            android:id="@+id/act_direccion"
                             android:layout_width="260dp"
                             android:layout_height="45dp"
                             android:layout_gravity="center"
