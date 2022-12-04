@@ -173,6 +173,7 @@ public class Profile extends AppCompatActivity {
                             @Override
                             public void onClick(SweetAlertDialog sDialog) {
                                 sDialog.dismissWithAnimation();
+                                logout();
                                 Intent intent = new Intent(Profile.this, Login.class);
                                 startActivity(intent);
                             }
@@ -252,5 +253,17 @@ public class Profile extends AppCompatActivity {
         };
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
+    }
+
+    public void logout() {
+        SessionManagement sessionManagement = new SessionManagement(Profile.this);
+        sessionManagement.removeSession();
+        moveToLogin();
+    }
+
+    private void moveToLogin() {
+        Intent intent = new Intent(Profile.this, Login.class);
+        intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+        startActivity(intent);
     }
 }

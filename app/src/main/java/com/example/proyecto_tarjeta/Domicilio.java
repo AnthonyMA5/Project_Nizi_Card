@@ -42,7 +42,7 @@ public class Domicilio extends AppCompatActivity {
         setContentView(R.layout.activity_domicilio);
 
         idU = getIntent().getStringExtra("idU");
-        direccionUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
+        direccionUsuario("https://nizi.red-utz.com/direccion_usuario.php?idU="+idU+"");
         regresar = findViewById(R.id.btnAtrasAddress);
         calle = findViewById(R.id.calle_address);
         num_ex = findViewById(R.id.numext_address);
@@ -51,13 +51,19 @@ public class Domicilio extends AppCompatActivity {
         colonia = findViewById(R.id.colonia_address);
         ciudad = findViewById(R.id.ciudad_address);
         estado = findViewById(R.id.estado_address);
-        pais = findViewById(R.id.pais_address);
         actDir = findViewById(R.id.act_direccion);
 
         actDir.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                actualizarDireccion("https://nizi.red-utz.com/actualizar_direccion_usuario.php");
+                if (!calle.getText().toString().isEmpty() && !num_ex.getText().toString().isEmpty() && !cp.getText().toString().isEmpty()
+                        && !colonia.getText().toString().isEmpty() && !ciudad.getText().toString().isEmpty() && !estado.getText().toString().isEmpty()){
+                    actualizarDireccion("https://nizi.red-utz.com/actualizar_direccion_usuario.php");
+                }else{
+                    new SweetAlertDialog(Domicilio.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("No pueden haber campos vacíos")
+                            .show();
+                }
             }
         });
 
@@ -115,11 +121,10 @@ public class Domicilio extends AppCompatActivity {
                         calle.setText(jsonObject.getString("calle"));
                         num_ex.setText(jsonObject.getString("num_ext"));
                         num_in.setText(jsonObject.getString("num_int"));
-                        cp.setText(jsonObject.getString("c_p_codigo"));
+                        cp.setText(jsonObject.getString("codigo_postal"));
                         colonia.setText(jsonObject.getString("colonia"));
-                        //ciudad.setText(jsonObject.getString("calle"));
-                        //estado.setText(jsonObject.getString("calle"));
-                        //pais.setText(jsonObject.getString("calle"));
+                        ciudad.setText(jsonObject.getString("nombre_municipio"));
+                        estado.setText(jsonObject.getString("nombre_estado"));
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }

@@ -138,20 +138,49 @@ public class Registro extends AppCompatActivity {
         });
     }
 
-    private void crearCuenta(String URL) {
+    private void crearCuenta(String URL){
         StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
             @Override
             public void onResponse(String response) {
-                new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
-                        .setTitleText("Cuenta creada con éxito")
-                        .show();
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    String respuesta = jsonObject.getString("message");
+                    if (respuesta.equals("Error usuario")){
+                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("Nombre de usuario no disponible")
+                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                                .show();
+                    }else if (respuesta.equals("Error correo")){
+                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
+                                .setTitleText("El correo electrónico ingresado se encuentra ligado a otra cuenta")
+                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                                .show();
+                    }else if (respuesta.equals("Correcto")){
+
+                        final String getEmailTxt = correo.getText().toString();
+
+                        new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
+                                .setTitleText("Cuenta creada")
+                                .setContentText("Tu cuenta se ha creado con éxito")
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        Intent intent = new Intent(Registro.this, OTP_Verification.class);
+                                        intent.putExtra("email", getEmailTxt);
+                                        startActivity(intent);
+                                    }
+                                })
+                                .show();
+                    }
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
             }
         }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                        .setTitleText(error.getMessage())
-                        .show();
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
             }
         }){
             @Nullable
@@ -170,66 +199,4 @@ public class Registro extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(this);
         requestQueue.add(stringRequest);
     }
-
-    /*private void ejecutarServicio (String URL){
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    String respuesta = jsonObject.getString("message");
-                    if (respuesta == "Error usuario"){
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("Nombre de usuario no disponible")
-                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                                .show();
-                    }else if (respuesta == "Error correo"){
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.ERROR_TYPE)
-                                .setTitleText("El correo electrónico ingresado se encuentra ligado a otra cuenta")
-                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                                .show();
-                    }else if (respuesta == "Correcto"){
-                        final String getEmailTxt = correo.getText().toString();
-
-                        new SweetAlertDialog(Registro.this, SweetAlertDialog.SUCCESS_TYPE)
-                                .setTitleText("Cuenta creada")
-                                .setContentText("Tu cuenta se ha creado con éxito")
-                                .setConfirmText("OK")
-                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
-                                    @Override
-                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                        Intent intent = new Intent(Registro.this, OTP_Verification.class);
-
-                                        intent.putExtra("email", getEmailTxt);
-                                        startActivity(intent);
-                                    }
-                                })
-                                .show();
-                    }
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        }){
-            @Nullable
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> parametros = new HashMap<String, String>();
-                parametros.put("nombre", nombre.getText().toString());
-                parametros.put("apellidos", apellidos.getText().toString());
-                parametros.put("correo", correo.getText().toString());
-                parametros.put("telefono", telefono.getText().toString());
-                parametros.put("username", nombre_usuario.getText().toString());
-                parametros.put("contrasena", contrasena.getText().toString());
-                return parametros;
-            }
-        };
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-        requestQueue.add(stringRequest);
-    }*/
 }

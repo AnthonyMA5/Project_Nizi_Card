@@ -192,6 +192,28 @@
                             android:textColor="#353535">
                         </EditText>
 
+                        <TextView
+
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:layout_marginTop="20dp"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:text="Estado"
+                            android:textColor="@color/black"
+                            android:textSize="17dp" />
+
+                        <EditText
+                            android:id="@+id/estado_address"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:layout_marginEnd="20dp"
+                            android:fontFamily="@font/gilroy_semibold"
+                            android:textSize="17dp"
+                            android:textColor="#353535"/>
+
                         <LinearLayout
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content"
@@ -199,57 +221,12 @@
                             android:layout_marginEnd="20dp"
                             android:orientation="horizontal">
 
-                            <TextView
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="3dp"
-                                android:layout_marginTop="20dp"
-                                android:fontFamily="@font/gilroy_semibold"
-                                android:text="Estado"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
 
-                            <TextView
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="20dp"
-                                android:layout_marginTop="20dp"
-                                android:fontFamily="@font/gilroy_semibold"
-                                android:text="País"
-                                android:textColor="@color/black"
-                                android:textSize="17dp" />
+
+
 
                         </LinearLayout>
 
-                        <LinearLayout
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="20dp"
-                            android:layout_marginEnd="20dp"
-                            android:orientation="horizontal">
-
-                            <EditText
-                                android:id="@+id/estado_address"
-                                android:layout_width="150dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginEnd="20dp"
-                                android:fontFamily="@font/gilroy_semibold"
-                                android:textSize="17dp"
-                                android:textColor="#353535">
-                            </EditText>
-
-                            <EditText
-                                android:id="@+id/pais_address"
-                                android:layout_width="160dp"
-                                android:layout_height="wrap_content"
-                                android:layout_marginStart="10dp"
-                                android:layout_marginEnd="20dp"
-                                android:fontFamily="@font/gilroy_semibold"
-                                android:textSize="17dp"
-                                android:textColor="#353535">
-                            </EditText>
-
-                        </LinearLayout>
 
                         <Button
                             android:id="@+id/act_direccion"

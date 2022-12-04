@@ -38,7 +38,7 @@ public class Home extends AppCompatActivity {
     String idU;
     BottomNavigationView nav_bottom;
     ImageView access_profile, logout_home;
-    TextView bienvenida, nom_tarjeta;
+    TextView bienvenida, nom_tarjeta, saldo_tarjeta, saldo_cuenta;
     CardView ingreso_dinero, mi_tarjeta, movimientos;
 
     @Override
@@ -54,20 +54,13 @@ public class Home extends AppCompatActivity {
         access_profile = findViewById(R.id.img_profile);
         logout_home = findViewById(R.id.btn_logout_home);
         bienvenida = findViewById(R.id.txt_bienvenida);
+        saldo_tarjeta = findViewById(R.id.dineroTarjeta);
+        saldo_cuenta = findViewById(R.id.dineroCuenta);
         ingreso_dinero = findViewById(R.id.ingresarDinero);
         mi_tarjeta = findViewById(R.id.miTarjeta);
         movimientos = findViewById(R.id.verMovimientos);
 
         nav_bottom.setSelectedItemId(R.id.nav_home);
-
-        /*String horaActual = new SimpleDateFormat("HH:mm:ss", Locale.getDefault()).format(new Date());
-        String bnosDias="07:00";
-        String bnosTardes="12:00";
-        String bnasNoches="19:00";
-
-        if (horaActual.equals()bnosDias){
-
-        }*/
 
         datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
 
@@ -153,6 +146,15 @@ public class Home extends AppCompatActivity {
                     try {
                         jsonObject = response.getJSONObject(i);
                         nom_tarjeta.setText(jsonObject.getString("nombre")+" "+jsonObject.getString("apellido"));
+                        bienvenida.setText("¡Hola, "+jsonObject.getString("nombre")+"!");
+                        if (jsonObject.getString("saldo").equals("0")){
+                            saldo_tarjeta.setText("$"+jsonObject.getString("saldo")+".00");
+                            saldo_cuenta.setText("$"+jsonObject.getString("saldo")+".00");
+                        }else{
+                            saldo_tarjeta.setText("$"+jsonObject.getString("saldo"));
+                            saldo_cuenta.setText("$"+jsonObject.getString("saldo"));
+                        }
+
                     } catch (JSONException e) {
                         Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
                     }
