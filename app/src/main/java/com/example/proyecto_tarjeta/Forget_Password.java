@@ -82,7 +82,14 @@ public class Forget_Password extends AppCompatActivity {
                     }else if (respuesta.equals("Correcto")){
                         new SweetAlertDialog(Forget_Password.this, SweetAlertDialog.SUCCESS_TYPE)
                                 .setTitleText("Hemos enviado una contraseña temporal al correo electrónico que ingresaste")
-                                .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
+                                .setConfirmText("OK")
+                                .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
+                                    @Override
+                                    public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                        Intent intent = new Intent(Forget_Password.this, Login.class);
+                                        startActivity(intent);
+                                    }
+                                })
                                 .show();
                     }
                 } catch (JSONException e) {

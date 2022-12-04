@@ -21,6 +21,7 @@ import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 import com.stripe.android.PaymentConfiguration;
 import com.stripe.android.paymentsheet.PaymentSheet;
+import com.stripe.android.paymentsheet.PaymentSheetResult;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -37,9 +38,10 @@ public class Ingresar_Saldo extends AppCompatActivity {
     Button open_stripe;
     EditText monto;
     ImageView atras;
-    PaymentSheet paymentSheet;
+
     String SECRET_KEY="sk_test_51M7jjlBsltoYNfJVQx602CM7FZXYZhsrW7mDkeGajoXogoX06bVNfmvIdu7roQnRr9Zel0I5kBPdwHHohYyUVnNA005F6wd6Ng";
     String PUBLISH_KEY="pk_test_51M7jjlBsltoYNfJVRHwM6nLn3u3iHdTlJaZi8t4PC21GqN0Yv3SKkBFaDwoJGTHwzVE53amuawVJRJLbkdD3YydN00EPcfyCkR";
+    PaymentSheet paymentSheet;
 
     String customerID;
     String EphericalKey;
@@ -68,24 +70,31 @@ public class Ingresar_Saldo extends AppCompatActivity {
 
         paymentSheet = new PaymentSheet(this, paymentSheetResult -> {
 
+            onPaymentResult(paymentSheetResult);
+
         });
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://api.stripe.com/v1/customers", new Response.Listener<String>() {
+        open_stripe.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                PaymentFlow();
+            }
+        });
+
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://api.stripe.com/v1/customers",
+                new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-
                         try {
                             JSONObject object = new JSONObject(response);
                             customerID = object.getString("id");
-                            Toast.makeText(Ingresar_Saldo.this, customerID, Toast.LENGTH_SHORT).show();
 
                             getEphericalKey(customerID);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-
-
                     }
                 }, new Response.ErrorListener() {
             @Override
@@ -93,55 +102,66 @@ public class Ingresar_Saldo extends AppCompatActivity {
 
             }
         }){
-            @Nullable
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer"+SECRET_KEY);
+                header.put("Authorization","Bearer "+SECRET_KEY);
                 return header;
             }
         };
 
         RequestQueue requestQueue = Volley.newRequestQueue(Ingresar_Saldo.this);
         requestQueue.add(stringRequest);
+    }
 
+    private void onPaymentResult(PaymentSheetResult paymentSheetResult) {
+
+        if (paymentSheetResult instanceof PaymentSheetResult.Completed){
+            new SweetAlertDialog(Ingresar_Saldo.this, SweetAlertDialog.SUCCESS_TYPE)
+                    .setTitleText("Pago exitoso")
+                    .setContentText("Tu pago ha sido validado de manera exitosa")
+                    .setConfirmText("OK")
+                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
+                        @Override
+                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                            Intent intent = new Intent(Ingresar_Saldo.this, Home.class);
+                            intent.putExtra("idU", idU);
+                            startActivity(intent);
+                        }
+                    })
+                    .show();
+        }
 
     }
 
     private void getEphericalKey(String customerID) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://api.stripe.com/v1/ephemeral_keys", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://api.stripe.com/v1/ephemeral_keys",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            EphericalKey = object.getString("id");
 
-                try {
-                    JSONObject object = new JSONObject(response);
-                    EphericalKey = object.getString("id");
-                    new SweetAlertDialog(Ingresar_Saldo.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText(EphericalKey)
-                            .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                            .show();
+                            getClientSecret(customerID,EphericalKey);
 
-                    getClientSecret(customerID, EphericalKey);
-
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
             }
         }){
-            @Nullable
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer"+SECRET_KEY);
-                header.put("Stripe-Version", "2022-11-15");
+                header.put("Authorization","Bearer "+SECRET_KEY);
+                header.put("Stripe-Version","2022-11-15");
                 return header;
             }
 
@@ -161,36 +181,30 @@ public class Ingresar_Saldo extends AppCompatActivity {
 
     private void getClientSecret(String customerID, String ephericalKey) {
 
-        StringRequest stringRequest = new StringRequest(Request.Method.POST, "https://api.stripe.com/v1/payment_intents", new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-
-                try {
-                    JSONObject object = new JSONObject(response);
-                    ClientSecret = object.getString("client_secret");
-                    new SweetAlertDialog(Ingresar_Saldo.this, SweetAlertDialog.ERROR_TYPE)
-                            .setTitleText(ClientSecret)
-                            .setConfirmButtonBackgroundColor(Color.parseColor("#100DE5"))
-                            .show();
+        StringRequest stringRequest = new StringRequest(Request.Method.POST,
+                "https://api.stripe.com/v1/payment_intents",
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            JSONObject object = new JSONObject(response);
+                            ClientSecret = object.getString("client_secret");
 
 
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-
-
-            }
-        }, new Response.ErrorListener() {
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                }, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
 
             }
         }){
-            @Nullable
             @Override
             public Map<String, String> getHeaders() throws AuthFailureError {
                 Map<String, String> header = new HashMap<>();
-                header.put("Authorization", "Bearer"+SECRET_KEY);
+                header.put("Authorization","Bearer "+SECRET_KEY);
                 return header;
             }
 
@@ -199,7 +213,7 @@ public class Ingresar_Saldo extends AppCompatActivity {
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
                 params.put("customer", customerID);
-                params.put("amount", "100"+"00");
+                params.put("amount", "1000");
                 params.put("currency", "mxn");
                 params.put("automatic_payment_methods[enabled]", "true");
                 return params;
@@ -209,6 +223,17 @@ public class Ingresar_Saldo extends AppCompatActivity {
         RequestQueue requestQueue = Volley.newRequestQueue(Ingresar_Saldo.this);
         requestQueue.add(stringRequest);
 
+    }
+
+    private void PaymentFlow() {
+
+        paymentSheet.presentWithPaymentIntent(
+                ClientSecret, new PaymentSheet.Configuration("Nizi Card Company"
+                ,new PaymentSheet.CustomerConfiguration(
+                        customerID,
+                        EphericalKey
+                ))
+        );
 
     }
 }
