@@ -13,6 +13,7 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -37,8 +38,9 @@ public class Home extends AppCompatActivity {
 
     String idU;
     BottomNavigationView nav_bottom;
-    ImageView access_profile, logout_home;
-    TextView bienvenida, nom_tarjeta, saldo_tarjeta, saldo_cuenta;
+    ImageView logout_home;
+    RelativeLayout access_profile;
+    TextView bienvenida, nom_tarjeta, saldo_tarjeta, saldo_cuenta, iniciales;
     CardView ingreso_dinero, mi_tarjeta, movimientos;
 
     @Override
@@ -49,6 +51,7 @@ public class Home extends AppCompatActivity {
         idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        iniciales = findViewById(R.id.inicialesUsuario);
         nom_tarjeta = findViewById(R.id.dueñoCuenta);
         nav_bottom = findViewById(R.id.bttom_nav);
         access_profile = findViewById(R.id.img_profile);
@@ -63,6 +66,7 @@ public class Home extends AppCompatActivity {
         nav_bottom.setSelectedItemId(R.id.nav_home);
 
         datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
+        inicialesUsuario("https://nizi.red-utz.com/iniciales_usuario.php?idU="+idU+"");
 
         nav_bottom.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override
@@ -135,6 +139,30 @@ public class Home extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void inicialesUsuario(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        iniciales.setText(jsonObject.getString("Nombre")+jsonObject.getString("Apellido"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void datosUsuario(String URL) {

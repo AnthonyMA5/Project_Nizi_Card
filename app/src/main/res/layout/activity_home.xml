@@ -41,11 +41,26 @@
                         android:layout_marginBottom="5dp"
                         app:cardCornerRadius="60dp">
 
-                        <ImageView
+                        <RelativeLayout
                             android:id="@+id/img_profile"
-                            android:layout_width="55dp"
-                            android:layout_height="55dp"
-                            app:srcCompat="@drawable/photo_example" />
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:background="@drawable/fondo4">
+
+                            <TextView
+                                android:textAllCaps="true"
+                                android:id="@+id/inicialesUsuario"
+                                android:layout_width="match_parent"
+                                android:layout_height="match_parent"
+                                android:layout_alignParentStart="true"
+                                android:layout_marginStart="0dp"
+                                android:fontFamily="@font/gilroy_semibold"
+                                android:gravity="center"
+                                android:textColor="@color/white"
+                                android:textSize="19dp" />
+
+                        </RelativeLayout>
+
 
                     </androidx.cardview.widget.CardView>
 

@@ -26,6 +26,10 @@ import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.util.HashMap;
 import java.util.Map;
 
@@ -36,6 +40,8 @@ public class OTP_Verification extends AppCompatActivity {
     private EditText otpEt1, otpEt2, otpEt3, otpEt4, otpEt5;
     private Button btnVerify;
     private TextView resendCode;
+    String getEmail;
+    String generateOtp;
 
     //Se volverá verdadero después de haber pasado 60 segundos
     private boolean resendEnabled = false;
@@ -63,7 +69,7 @@ public class OTP_Verification extends AppCompatActivity {
 
         //Obtenemos el correo del Activity Registro
 
-        final String getEmail = getIntent().getStringExtra("email");
+        getEmail = getIntent().getStringExtra("email");
 
         //Asignamos el email en el TextView
 
@@ -74,6 +80,8 @@ public class OTP_Verification extends AppCompatActivity {
         otpEt3.addTextChangedListener(textWatcher);
         otpEt4.addTextChangedListener(textWatcher);
         otpEt5.addTextChangedListener(textWatcher);
+
+        generateOtp = otpEt1.getText().toString()+otpEt2.getText().toString()+otpEt3.getText().toString()+otpEt4.getText().toString()+otpEt5.getText().toString();
 
         //Abrir por defecto el teclado en el otpET1
         showKeyBoard(otpEt1);
@@ -88,6 +96,7 @@ public class OTP_Verification extends AppCompatActivity {
                 if (resendEnabled){
                     //Iniciamos un nuevo conteo
                     startCountDownTimer();
+                    generarNuevoCodigo("https://nizi.red-utz.com/generar_nuevo_codigo.php");
                 }
 
             }
@@ -96,15 +105,98 @@ public class OTP_Verification extends AppCompatActivity {
         btnVerify.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                final String generateOtp = otpEt1.getText().toString()+otpEt2.getText().toString()+otpEt3.getText().toString()+otpEt4.getText().toString()+otpEt5.getText().toString();
-                Intent intent = new Intent(OTP_Verification.this, Home.class);
-                startActivity(intent);
+                generateOtp = otpEt1.getText().toString()+otpEt2.getText().toString()+otpEt3.getText().toString()+otpEt4.getText().toString()+otpEt5.getText().toString();
                 if (generateOtp.length()==5){
                     //Escribir el código para validar el OTP
+                    validarOTP("https://nizi.red-utz.com/validar_codigo_otp.php");
+
+                }else{
+                    new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.ERROR_TYPE)
+                            .setTitleText("Código incompleto")
+                            .setContentText("Coloca los 5 números del código de verificación para continuar")
+                            .show();
                 }
             }
         });
 
+    }
+
+    private void validarOTP(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        String respuesta = jsonObject.getString("message");
+                        if (respuesta.equals("Validación correcta")){
+                            /*String id = informacion.getJSONObject(2).getString("idusuario");
+                            new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.SUCCESS_TYPE)
+                                    .setTitleText("Validación completada")
+                                    .setContentText("Bienvenido a la familia de Nizi Card")
+                                    .setConfirmText("OK")
+                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
+                                        @Override
+                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
+                                            Intent intent = new Intent(OTP_Verification.this, Home.class);
+                                            intent.putExtra("idU", id);
+                                            startActivity(intent);
+                                        }
+                                    })
+                                    .show();*/
+                        }else if(respuesta.equals("Validación incorrecta")){
+                            new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.ERROR_TYPE)
+                                    .setTitleText("Código no válido")
+                                    .setContentText("Verifica que hayas introducido correctamente el código o genera uno nuevo")
+                                    .show();
+                        }
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("correo", getEmail);
+                parametros.put("otp", generateOtp);
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
+    }
+
+    private void generarNuevoCodigo(String URL) {
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, URL, new com.android.volley.Response.Listener<String>() {
+            @Override
+            public void onResponse(String response) {
+                new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.SUCCESS_TYPE)
+                        .setTitleText("Nuevo código generado con éxito")
+                        .setContentText("Hemos enviado el luego código a tu correo electrónico")
+                        .show();
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), error.toString(), Toast.LENGTH_SHORT).show();
+            }
+        }){
+            @Nullable
+            @Override
+            protected Map<String, String> getParams() throws AuthFailureError {
+                Map<String, String> parametros = new HashMap<>();
+                parametros.put("correo", getEmail);
+                return parametros;
+            }
+        };
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(stringRequest);
     }
 
     private void showKeyBoard(EditText otpET){
@@ -115,6 +207,7 @@ public class OTP_Verification extends AppCompatActivity {
         inputMethodManager.showSoftInput(otpET, inputMethodManager.SHOW_IMPLICIT);
     }
 
+    //Método para activar el conteo regresivo
     private void startCountDownTimer(){
 
         resendEnabled = false;
@@ -135,6 +228,8 @@ public class OTP_Verification extends AppCompatActivity {
             }
         }.start();
     }
+
+    //Método para ubicar en que posición se va a asignar el valor que ingrese el usuario en el teclado
 
     private final TextWatcher textWatcher = new TextWatcher() {
         @Override

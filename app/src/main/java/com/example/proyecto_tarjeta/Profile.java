@@ -39,6 +39,7 @@ import cn.pedant.SweetAlert.SweetAlertDialog;
 
 public class Profile extends AppCompatActivity {
 
+    TextView iniciales;
     String idU;
     TextView nombreperfil, correoperfil;
     BottomNavigationView nav_bottom;
@@ -53,10 +54,12 @@ public class Profile extends AppCompatActivity {
         idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        inicialesUsuario("https://nizi.red-utz.com/iniciales_usuario.php?idU="+idU+"");
         datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
 
         nav_bottom = findViewById(R.id.bttom_nav);
 
+        iniciales = findViewById(R.id.inicialesUsuario_profile);
         nombreperfil = findViewById(R.id.nombre_1_completo_perfil);
         correoperfil = findViewById(R.id.correo1_perfil);
         informacion_p = findViewById(R.id.ingPI);
@@ -255,6 +258,30 @@ public class Profile extends AppCompatActivity {
         requestQueue.add(stringRequest);
     }
 
+    private void inicialesUsuario(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        iniciales.setText(jsonObject.getString("Nombre")+jsonObject.getString("Apellido"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
+    }
+
     public void logout() {
         SessionManagement sessionManagement = new SessionManagement(Profile.this);
         sessionManagement.removeSession();
@@ -266,4 +293,6 @@ public class Profile extends AppCompatActivity {
         intent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
         startActivity(intent);
     }
+
+
 }
