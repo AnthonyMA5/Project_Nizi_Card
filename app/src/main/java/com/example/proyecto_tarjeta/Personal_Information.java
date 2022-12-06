@@ -37,6 +37,7 @@ public class Personal_Information extends AppCompatActivity {
     String idU;
     EditText nombre, apellido, telefono, correo, username;
     ImageView regresar;
+    TextView iniciales;
     TextView nombre_c, correo_c;
     Button actualizar;
 
@@ -48,6 +49,9 @@ public class Personal_Information extends AppCompatActivity {
         idU = getIntent().getStringExtra("idU");
         regresar = findViewById(R.id.btnAtrasPerfil);
 
+        inicialesUsuario("https://nizi.red-utz.com/iniciales_usuario.php?idU="+idU+"");
+
+        iniciales = findViewById(R.id.inicialesUsuario_profile_info);
         correo_c = findViewById(R.id.correo_perfil_info);
         nombre_c = findViewById(R.id.nombre_completo_perfil);
         nombre = findViewById(R.id.name_profile);
@@ -75,6 +79,30 @@ public class Personal_Information extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+    }
+
+    private void inicialesUsuario(String URL) {
+        JsonArrayRequest jsonArrayRequest = new JsonArrayRequest(URL, new Response.Listener<JSONArray>() {
+            @Override
+            public void onResponse(JSONArray response) {
+                JSONObject jsonObject = null;
+                for (int i = 0; i < response.length(); i++){
+                    try {
+                        jsonObject = response.getJSONObject(i);
+                        iniciales.setText(jsonObject.getString("Nombre")+jsonObject.getString("Apellido"));
+                    } catch (JSONException e) {
+                        Toast.makeText(getApplicationContext(), e.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Toast.makeText(getApplicationContext(), "Error de conexión", Toast.LENGTH_SHORT).show();
+            }
+        });
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+        requestQueue.add(jsonArrayRequest);
     }
 
     private void actualizarDatos(String URL) {

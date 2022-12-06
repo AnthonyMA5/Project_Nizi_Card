@@ -233,17 +233,36 @@
 
             </RelativeLayout>
 
-            <de.hdodenhof.circleimageview.CircleImageView
-                android:layout_width="130dp"
-                android:layout_height="130dp"
-                android:layout_marginTop="90dp"
-                app:shapeAppearanceOverlay="@style/circular"
-                android:src="@drawable/photo_example"
-                app:civ_border_color="#D8D8D8"
-                android:elevation="15dp"
-                android:padding="5dp"
+            <androidx.cardview.widget.CardView
+                android:layout_width="115dp"
+                android:layout_height="115dp"
+                android:layout_gravity="center"
                 android:layout_centerHorizontal="true"
-                app:civ_border_width="3dp" />
+                android:layout_marginTop="95dp"
+                android:layout_marginBottom="5dp"
+                app:cardCornerRadius="60dp">
+
+                <RelativeLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:background="@drawable/fondo4">
+
+                    <TextView
+                        android:id="@+id/inicialesUsuario_profile_info"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_alignParentStart="true"
+                        android:layout_marginStart="0dp"
+                        android:fontFamily="@font/gilroy_semibold"
+                        android:gravity="center"
+                        android:textAllCaps="true"
+                        android:textColor="@color/white"
+                        android:textSize="40dp" />
+
+                </RelativeLayout>
+
+
+            </androidx.cardview.widget.CardView>
 
         </RelativeLayout>
 
