@@ -19,6 +19,12 @@
             android:layout_height="wrap_content"
             android:orientation="vertical">
 
+            <ListView
+                android:visibility="invisible"
+                android:id="@+id/movimientos_usuario"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"></ListView>
+
             <LinearLayout
                 android:id="@+id/top_movimiento"
                 android:layout_width="match_parent"
@@ -47,6 +53,331 @@
                     android:textSize="22dp" />
 
             </LinearLayout>
+
+            <RelativeLayout
+                android:id="@+id/mov2"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mov1"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgMov1"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/pago_correcto" />
+
+                <TextView
+                    android:id="@+id/nameMov1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgMov1"
+                    android:layout_toRightOf="@+id/imgMov1"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Ingreso de saldo"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateinfoMov1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toEndOf="@+id/imgMov1"
+                    android:layout_toRightOf="@+id/imgMov1"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="02:59:41   2022-12-05"
+                    android:textColor="#5A5A5A"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/montoMov1"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/dateinfoMov1"
+                    android:layout_toRightOf="@+id/dateinfoMov1"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="+ $850.00"
+                    android:textColor="#00B828"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mov3"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mov2"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgMov2"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/compra_correcta" />
+
+                <TextView
+                    android:id="@+id/nameMov2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgMov2"
+                    android:layout_toRightOf="@+id/imgMov2"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Compra"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateinfoMov2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toEndOf="@+id/imgMov2"
+                    android:layout_toRightOf="@+id/imgMov2"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="02:59:04   2022-12-05"
+                    android:textColor="#5A5A5A"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/montoMov2"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/dateinfoMov2"
+                    android:layout_toRightOf="@+id/dateinfoMov2"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="- $100.00"
+                    android:textColor="#FF0000"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mov4"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mov3"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgMov3"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/pago_correcto" />
+
+                <TextView
+                    android:id="@+id/nameMov3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgMov3"
+                    android:layout_toRightOf="@+id/imgMov3"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Ingreso de saldo"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateinfoMov3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toEndOf="@+id/imgMov3"
+                    android:layout_toRightOf="@+id/imgMov3"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="02:58:35   2022-12-05"
+                    android:textColor="#5A5A5A"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/montoMov3"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/dateinfoMov3"
+                    android:layout_toRightOf="@+id/dateinfoMov3"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="+ $250.00"
+                    android:textColor="#00B828"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mov5"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/top_movimiento"
+                android:layout_marginTop="20dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgMov4"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/compra_correcta" />
+
+                <TextView
+                    android:id="@+id/nameMov4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgMov4"
+                    android:layout_toRightOf="@+id/imgMov4"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Compra"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateinfoMov4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toEndOf="@+id/imgMov4"
+                    android:layout_toRightOf="@+id/imgMov4"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="03:00:11   2022-12-05"
+                    android:textColor="#5A5A5A"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/montoMov4"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/dateinfoMov4"
+                    android:layout_toRightOf="@+id/dateinfoMov4"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="- $120.00"
+                    android:textColor="#FF0000"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
+
+            <RelativeLayout
+                android:id="@+id/mov1"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/mov5"
+                android:layout_marginTop="5dp"
+                android:layout_marginStart="20dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="5dp"
+                android:background="@color/white"
+                android:padding="15dp">
+
+                <ImageView
+                    android:id="@+id/imgMov"
+                    android:layout_width="55dp"
+                    android:layout_height="55dp"
+                    android:layout_weight="1"
+                    android:src="@drawable/compra_correcta" />
+
+                <TextView
+                    android:id="@+id/nameMov"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgMov"
+                    android:layout_toRightOf="@+id/imgMov"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="Compra"
+                    android:textColor="@color/black"
+                    android:textSize="20dp" />
+
+                <TextView
+                    android:id="@+id/dateinfoMov"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="25dp"
+                    android:layout_marginLeft="25dp"
+                    android:layout_marginTop="32dp"
+                    android:layout_toEndOf="@+id/imgMov"
+                    android:layout_toRightOf="@+id/imgMov"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="02:59:55   2022-12-05"
+                    android:textColor="#5A5A5A"
+                    android:textSize="16dp" />
+
+                <TextView
+                    android:id="@+id/montoMov"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="17dp"
+                    android:layout_toEndOf="@+id/dateinfoMov"
+                    android:layout_toRightOf="@+id/dateinfoMov"
+                    android:fontFamily="@font/gilroy_semibold"
+                    android:text="- $75.00"
+                    android:textColor="#FF0000"
+                    android:textSize="18dp" />
+
+            </RelativeLayout>
 
         </RelativeLayout>
 

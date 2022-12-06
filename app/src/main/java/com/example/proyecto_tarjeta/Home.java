@@ -40,7 +40,7 @@ public class Home extends AppCompatActivity {
     BottomNavigationView nav_bottom;
     ImageView logout_home;
     RelativeLayout access_profile;
-    TextView bienvenida, nom_tarjeta, saldo_tarjeta, saldo_cuenta, iniciales;
+    TextView bienvenida, nom_tarjeta, saldo_tarjeta, saldo_cuenta, iniciales, masMovimientos;
     CardView ingreso_dinero, mi_tarjeta, movimientos;
 
     @Override
@@ -51,6 +51,7 @@ public class Home extends AppCompatActivity {
         idU = getIntent().getStringExtra("idU");
         getWindow().addFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
+        masMovimientos = findViewById(R.id.verMasMovimientos);
         iniciales = findViewById(R.id.inicialesUsuario);
         nom_tarjeta = findViewById(R.id.dueñoCuenta);
         nav_bottom = findViewById(R.id.bttom_nav);
@@ -67,6 +68,15 @@ public class Home extends AppCompatActivity {
 
         datosUsuario("https://nizi.red-utz.com/informacion_usuario.php?idU="+idU+"");
         inicialesUsuario("https://nizi.red-utz.com/iniciales_usuario.php?idU="+idU+"");
+
+        masMovimientos.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                Intent intent = new Intent(Home.this, Movimientos.class);
+                intent.putExtra("idU", idU);
+                startActivity(intent);
+            }
+        });
 
         nav_bottom.setOnItemSelectedListener(new NavigationBarView.OnItemSelectedListener() {
             @Override

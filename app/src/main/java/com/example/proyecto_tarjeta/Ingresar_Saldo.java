@@ -190,7 +190,6 @@ public class Ingresar_Saldo extends AppCompatActivity {
                             JSONObject object = new JSONObject(response);
                             ClientSecret = object.getString("client_secret");
 
-
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }

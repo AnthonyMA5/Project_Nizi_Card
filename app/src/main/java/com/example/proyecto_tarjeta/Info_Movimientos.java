@@ -2,23 +2,17 @@ package com.example.proyecto_tarjeta;
 
 public class Info_Movimientos {
 
-    int ID, Monto;
+    int Monto;
     String  Tipo, Fecha, Hora;
 
-    public Info_Movimientos(int ID, int monto, String tipo, String fecha, String hora) {
-        this.ID = ID;
+    public Info_Movimientos(int monto, String tipo, String fecha, String hora) {
         Monto = monto;
         Tipo = tipo;
         Fecha = fecha;
         Hora = hora;
     }
 
-    public int getID() {
-        return ID;
-    }
-
-    public void setID(int ID) {
-        this.ID = ID;
+    public Info_Movimientos(String monto, int tipo, String fecha, String hora) {
     }
 
     public int getMonto() {
