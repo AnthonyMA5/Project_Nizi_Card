@@ -129,20 +129,7 @@ public class OTP_Verification extends AppCompatActivity {
                         JSONObject jsonObject = new JSONObject(response);
                         String respuesta = jsonObject.getString("message");
                         if (respuesta.equals("Validación correcta")){
-                            /*String id = informacion.getJSONObject(2).getString("idusuario");
-                            new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.SUCCESS_TYPE)
-                                    .setTitleText("Validación completada")
-                                    .setContentText("Bienvenido a la familia de Nizi Card")
-                                    .setConfirmText("OK")
-                                    .setConfirmClickListener(new SweetAlertDialog.OnSweetClickListener(){
-                                        @Override
-                                        public void onClick(SweetAlertDialog sweetAlertDialog) {
-                                            Intent intent = new Intent(OTP_Verification.this, Home.class);
-                                            intent.putExtra("idU", id);
-                                            startActivity(intent);
-                                        }
-                                    })
-                                    .show();*/
+
                         }else if(respuesta.equals("Validación incorrecta")){
                             new SweetAlertDialog(OTP_Verification.this, SweetAlertDialog.ERROR_TYPE)
                                     .setTitleText("Código no válido")
